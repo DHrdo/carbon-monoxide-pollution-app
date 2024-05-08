@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { APICall } from './../../Client_API';
 import { StateForm } from "./StateForm/StateForm";
 import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
@@ -6,6 +7,26 @@ export const Form = () => {
 
 
     const [userChoice, setUserChoice] = useState('state_form');
+
+    const [selectionState, setSelectionState] = useState('');
+    const [beginDate, setBeginDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [sendBtnClicked, setSendBtnClicked] = useState(false);
+
+    const handleBeginDate = (event) => {
+        setBeginDate(event.target.value)
+    };
+    const handleEndDate = (event) => {
+        setEndDate(event.target.value)
+    };
+
+    //* SEND DATA FUNCTION
+    const sendData = (e) => {
+        e.preventDefault();  
+            APICall(selectionState, beginDate, endDate);
+            setSendBtnClicked(true);
+    };
+
 
     const getUserChoice = (choice) => {
         setUserChoice(choice);
@@ -29,8 +50,24 @@ export const Form = () => {
 
             {
                 userChoice === 'state_form' ?
-                    <StateForm /> :
-                    <SpecificPlaceForm />
+                    <StateForm
+                        selectionState={selectionState}
+                        setSelectionState={setSelectionState}
+                        beginDate={beginDate} 
+                        handleBeginDate={handleBeginDate}
+                        endDate={endDate}
+                        handleEndDate={handleEndDate}
+                        sendBtnClicked={sendBtnClicked}
+                        sendData={sendData}
+                    /> :
+                    <SpecificPlaceForm 
+                        beginDate={beginDate} 
+                        handleBeginDate={handleBeginDate}
+                        endDate={endDate}
+                        handleEndDate={handleEndDate}
+                        sendBtnClicked={sendBtnClicked}
+                        sendData={sendData}
+                    />
             }
         </div>
     );

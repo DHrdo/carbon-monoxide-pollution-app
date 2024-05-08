@@ -30,6 +30,10 @@
   color: #000000;
   width: 70%;
 }
+.state-form .state-form-content .error {
+  color: red;
+  font-weight: bolder;
+}
 .state-form .state-form-content .submit {
   margin: 20px auto;
   width: 150px;

@@ -1,36 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { APICall } from './../../../Client_API';
 import statesList from './../../../states.json'
 
-export const StateForm = () => {
+export const StateForm = ( { selectionState, setSelectionState, beginDate, handleBeginDate, endDate, handleEndDate, sendBtnClicked, sendData } ) => {
 
     //* GESTIONE DELLA SELEZIONE DELLO STATO
-    const [selectionState, setSelectionState] = useState('');
-    const [beginDate, setBeginDate] = useState('')
-    const [endDate, setEndDate] = useState('')
-
-    console.log(selectionState, beginDate, endDate);
 
     const handleStateSelection = (event) => {
         setSelectionState(event.target.value);
-    };
-
-    const handleBeginDate = (event) => {
-        setBeginDate(event.target.value)
-    };
-    const handleEndDate = (event) => {
-        setEndDate(event.target.value)
-    };
-
-    //* SEND DATA FUNCTION
-    const sendData = (e) => {
-        e.preventDefault()
-
-        if (selectionState && beginDate && endDate) {
-            APICall(selectionState, beginDate, endDate);
-        } else {
-            console.log('non sono true');
-        };
     };
 
     const mapStatesNames =
@@ -54,8 +30,9 @@ export const StateForm = () => {
         <div className="state-form">
             <div className="state-form-content">
 
-                <label htmlFor="from_state">Stato: </label>
+                <label htmlFor="selected_state">Stato: </label>
                 <select
+                    className={(sendBtnClicked && !selectionState) ? 'error' : ''}
                     name="selected_state"
                     id="selected_state"
                     onChange={(event) => handleStateSelection(event)}>
@@ -65,10 +42,22 @@ export const StateForm = () => {
                 <br />
 
                 <label htmlFor="begin_date">Data Inizio: </label>
-                <input type="date" id="begin_date" name="begin_date" onChange={handleBeginDate} />
+                <input 
+                    className={(sendBtnClicked && !beginDate) ? 'error' : ''}
+                    type="date" 
+                    id="begin_date" 
+                    name="begin_date" 
+                    onChange={handleBeginDate} 
+                />
                 <br />
                 <label htmlFor="end_date">Data Fine: </label>
-                <input type="date" id="end_date" name="end_date" onChange={handleEndDate} />
+                <input 
+                    className={(sendBtnClicked && !endDate) ? 'error' : ''}
+                    type="date" 
+                    id="end_date" 
+                    name="end_date" 
+                    onChange={handleEndDate} 
+                />
 
                 <button className="submit" type="submit" onClick={(e) => sendData(e)}>
                     CALCOLA
