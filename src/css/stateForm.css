@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("/src/fonts/Montserrat-Italic-VariableFont_wght.ttf");
+}
+.state-form {
+  font-family: "Montserrat";
+  background-color: #9DCD5A;
+  width: 100%;
+  margin: 0 auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  justify-content: center;
+}
+.state-form .state-form-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.state-form .state-form-content select,
+.state-form .state-form-content input,
+.state-form .state-form-content label {
+  align-self: center;
+  margin: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #000000;
+  width: 70%;
+}
+.state-form .state-form-content .submit {
+  margin: 20px auto;
+  width: 150px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #000000;
+  background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
+  border: solid #9dcd5a 2px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 10px;
+  transition: 620ms;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.state-form .state-form-content .submit:hover {
+  transition: 626ms;
+  width: 165px;
+  background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
+  color: #ffffff;
+  border: solid 2px #8bb354;
+}
+
+@media only screen and (min-width: 768px) {
+  .state-form .state-form-content input,
+  .state-form .state-form-content label {
+    font-size: 1em;
+  }
+}
