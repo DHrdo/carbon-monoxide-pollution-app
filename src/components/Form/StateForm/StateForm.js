@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import statesList from './../../../states.json'
+import { Loader } from "../../Loader/Loader";
 
 export const StateForm = (
     {
@@ -10,8 +11,11 @@ export const StateForm = (
         endDate,
         setEndDate,
         sendBtnClicked,
-        sendData
+        sendData,
+        fetchIsLoading
     }) => {
+
+        console.log('fetchIsLoading', fetchIsLoading);
 
     const mapStatesNames =
         [
@@ -57,6 +61,8 @@ export const StateForm = (
                     name="end_date"
                     onChange={(e) => setEndDate(e.target.value)}
                 />
+
+                {fetchIsLoading ? <Loader /> : undefined}
 
                 <button
                     className="submit"

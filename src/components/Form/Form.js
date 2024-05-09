@@ -4,6 +4,7 @@ import { APICallData } from './../../Client_API';
 import { StateForm } from "./StateForm/StateForm";
 import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
+
 export const Form = () => {
 
     //* STATES
@@ -16,13 +17,17 @@ export const Form = () => {
     const [endDate, setEndDate] = useState('');
     const [sendBtnClicked, setSendBtnClicked] = useState(false);
 
+    const [fetchIsLoading, setIsFetchLoading] = useState(false);
+
+
     //* SEND DATA FUNCTION
     const sendData = (e) => {
         e.preventDefault();
-
+        setIsFetchLoading(true);
+        
         formUserChoice === 'state_form' ?
-            APICallState(selectionState, beginDate, endDate) :
-            APICallData(longitude, latitude, beginDate, endDate);
+            APICallState(selectionState, beginDate, endDate, setIsFetchLoading) :
+            APICallData(longitude, latitude, beginDate, endDate, setIsFetchLoading);
 
         setSendBtnClicked(true);
     };
@@ -59,6 +64,7 @@ export const Form = () => {
                         setEndDate={setEndDate}
                         sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
+                        fetchIsLoading={fetchIsLoading}
                     /> :
                     <SpecificPlaceForm
                         setLongitude={setLongitude}
@@ -66,6 +72,7 @@ export const Form = () => {
                         setBeginDate={setBeginDate}
                         setEndDate={setEndDate}
                         sendData={sendData}
+                        fetchIsLoading={fetchIsLoading}
                     />
             }
         </div>
