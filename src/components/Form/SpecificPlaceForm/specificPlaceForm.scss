@@ -57,6 +57,12 @@
             justify-content: center;
 
             cursor: pointer;
+
+            .btn-icon {
+                width: 25px;
+                margin: 0 3px;
+                flex-direction: row;
+            }
         }
 
         .submit:hover {

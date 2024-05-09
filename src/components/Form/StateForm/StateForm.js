@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import statesList from './../../../states.json'
 
-export const StateForm = ( { selectionState, setSelectionState, beginDate, handleBeginDate, endDate, handleEndDate, sendBtnClicked, sendData } ) => {
-
-    //* GESTIONE DELLA SELEZIONE DELLO STATO
-
-    const handleStateSelection = (event) => {
-        setSelectionState(event.target.value);
-    };
+export const StateForm = (
+    {
+        selectionState,
+        setSelectionState,
+        beginDate,
+        setBeginDate,
+        endDate,
+        setEndDate,
+        sendBtnClicked,
+        sendData
+    }) => {
 
     const mapStatesNames =
         [
             <option key="default" value="">Seleziona uno stato</option>,
-            ...statesList.map(state => <option key={state.Code} value={state.Code}> {`${state.Code} - ${state.Name}`} </option>)
+            ...statesList.map(state =>
+                <option
+                    key={state.Code}
+                    value={state.Code}> {`${state.Code} - ${state.Name}`}
+                </option>)
         ];
     //---------------------------------------------------------------------------------------------------------------
-
-
-    //* STYLE IMG
-    const imgStyles = {
-        width: '25px',
-        marginLeft: '3px',
-        marginRight: '3px',
-        flexDirection: 'row'
-    };
 
 
     return (
@@ -35,36 +34,40 @@ export const StateForm = ( { selectionState, setSelectionState, beginDate, handl
                     className={(sendBtnClicked && !selectionState) ? 'error' : ''}
                     name="selected_state"
                     id="selected_state"
-                    onChange={(event) => handleStateSelection(event)}>
+                    onChange={(e) => setSelectionState(e.target.value)}>
                     {mapStatesNames}
                 </select>
 
                 <br />
 
                 <label htmlFor="begin_date">Data Inizio: </label>
-                <input 
+                <input
                     className={(sendBtnClicked && !beginDate) ? 'error' : ''}
-                    type="date" 
-                    id="begin_date" 
-                    name="begin_date" 
-                    onChange={handleBeginDate} 
+                    type="date"
+                    id="begin_date"
+                    name="begin_date"
+                    onChange={(e) => setBeginDate(e.target.value)}
                 />
                 <br />
                 <label htmlFor="end_date">Data Fine: </label>
-                <input 
+                <input
                     className={(sendBtnClicked && !endDate) ? 'error' : ''}
-                    type="date" 
-                    id="end_date" 
-                    name="end_date" 
-                    onChange={handleEndDate} 
+                    type="date"
+                    id="end_date"
+                    name="end_date"
+                    onChange={(e) => setEndDate(e.target.value)}
                 />
 
-                <button className="submit" type="submit" onClick={(e) => sendData(e)}>
+                <button
+                    className="submit"
+                    type="submit"
+                    onClick={(e) => sendData(e)}
+                >
                     CALCOLA
                     <img
+                        className="btn-icon"
                         src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg"
-                        style={imgStyles}
-                        alt="Calcola"
+                        alt="submit"
                     />
                 </button>
             </div>

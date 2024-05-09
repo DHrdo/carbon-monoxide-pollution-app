@@ -52,6 +52,11 @@
   justify-content: center;
   cursor: pointer;
 }
+.state-form .state-form-content .submit .btn-icon {
+  width: 25px;
+  margin: 0 3px;
+  flex-direction: row;
+}
 .state-form .state-form-content .submit:hover {
   transition: 626ms;
   width: 165px;

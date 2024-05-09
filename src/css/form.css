@@ -29,13 +29,11 @@
   margin-bottom: 1px;
 }
 .form .switch-form .switch-form-content .state-form-selected {
-  -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   background-color: #9DCD5A;
 }
 .form .switch-form .switch-form-content .specific-place-form-selected {
-  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
   background-color: #9DCD5A;
 }
 .form .switch-form .switch-form-content .left-side {
@@ -43,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-left: #9DCD5A 1px solid;
   cursor: pointer;
 }
 .form .switch-form .switch-form-content .left-side .left-side-title {
@@ -53,6 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: #9DCD5A 1px solid;
   cursor: pointer;
 }
 .form .switch-form .switch-form-content .right-side .right-side-title {

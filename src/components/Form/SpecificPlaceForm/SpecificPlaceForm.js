@@ -1,33 +1,70 @@
 import React from "react";
 
-export const SpecificPlaceForm = () => {
+export const SpecificPlaceForm = (
+    {
+        longitude,
+        setLongitude,
+        latitude,
+        setLatitude,
+        beginDate,
+        setBeginDate,
+        endDate,
+        setEndDate,
+        sendBtnClicked,
+        sendData
+    }) => {
 
-    const imgStyles = {
-        width: '25px',
-        marginLeft: '3px',
-        marginRight: '3px',
-        flexDirection: 'row'
-
-    };
     return (
         <div className="specific-place-form">
             <div className="specific-place-form-content">
 
                 <label htmlFor="longitude">Longitudine: </label>
-                <input type="text" id="longitude" name="longitude" />
-                <br />
-                <label htmlFor="latitude">Latitudine: </label>
-                <input type="text" id="latitude" name="latitude" />
-                <br />
-                <label htmlFor="from_date">Data Inizio: </label>
-                <input type="date" id="from_date" name="from_date" />
-                <br />
-                <label htmlFor="to_date">Data Fine: </label>
-                <input type="date" id="to_date" name="to_date" />
+                <input
+                    className={(sendBtnClicked && !longitude) ? 'error' : ''}
+                    type="text"
+                    id="longitude"
+                    name="longitude"
+                    placeholder="Inserisci la Longitudine (es. 12.345)"
+                    onChange={(e) => setLongitude(e.target.value)}
+                />
 
-                <button className="submit" type="submit">
+                <br />
+
+                <label htmlFor="latitude">Latitudine: </label>
+                <input
+                    className={(sendBtnClicked && !latitude) ? 'error' : ''}
+                    type="text"
+                    id="latitude"
+                    name="latitude"
+                    placeholder="Inserisci la Latitudine (es. 7.654)"
+                    onChange={(e) => setLatitude(e.target.value)}
+                />
+
+                <br />
+
+                <label htmlFor="from_date">Data Inizio: </label>
+                <input
+                    className={(sendBtnClicked && !beginDate) ? 'error' : ''}
+                    type="date"
+                    id="from_date"
+                    name="from_date"
+                    onChange={(e) => setBeginDate(e.target.value)}
+                />
+
+                <br />
+
+                <label htmlFor="to_date">Data Fine: </label>
+                <input
+                    className={(sendBtnClicked && !endDate) ? 'error' : ''}
+                    type="date"
+                    id="to_date"
+                    name="to_date"
+                    onChange={(e) => setEndDate(e.target.value)}
+                />
+
+                <button className="submit" type="submit" onClick={(e) => sendData(e)}>
                     CALCOLA
-                    <img src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg" style={imgStyles} />
+                    <img className="btn-icon" src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg" alt="submit" />
                 </button>
             </div>
         </div>

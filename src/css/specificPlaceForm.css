@@ -47,6 +47,11 @@
   justify-content: center;
   cursor: pointer;
 }
+.specific-place-form .specific-place-form-content .submit .btn-icon {
+  width: 25px;
+  margin: 0 3px;
+  flex-direction: row;
+}
 .specific-place-form .specific-place-form-content .submit:hover {
   transition: 626ms;
   width: 165px;
