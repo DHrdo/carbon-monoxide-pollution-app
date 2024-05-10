@@ -10,7 +10,7 @@ export const Form = () => {
     //* STATES
     const [formUserChoice, setFormUserChoice] = useState('state_form'); //* state_form or specific_place_form
 
-    const [selectionState, setSelectionState] = useState(''); //* state code
+    const [selectionState, setSelectionState] = useState('');
     const [longitude, setLongitude] = useState('');
     const [latitude, setLatitude] = useState('');
     const [beginDate, setBeginDate] = useState('');
@@ -24,7 +24,7 @@ export const Form = () => {
     const sendData = (e) => {
         e.preventDefault();
         setIsFetchLoading(true);
-        
+
         formUserChoice === 'state_form' ?
             APICallState(selectionState, beginDate, endDate, setIsFetchLoading) :
             APICallData(longitude, latitude, beginDate, endDate, setIsFetchLoading);

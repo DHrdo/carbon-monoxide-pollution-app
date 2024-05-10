@@ -1,4 +1,5 @@
 import React from "react";
+import { Loader } from "../../Loader/Loader";
 
 export const SpecificPlaceForm = (
     {
@@ -11,7 +12,8 @@ export const SpecificPlaceForm = (
         endDate,
         setEndDate,
         sendBtnClicked,
-        sendData
+        sendData,
+        fetchIsLoading
     }) => {
 
     return (
@@ -61,6 +63,8 @@ export const SpecificPlaceForm = (
                     name="to_date"
                     onChange={(e) => setEndDate(e.target.value)}
                 />
+
+                {fetchIsLoading ? <Loader /> : undefined}
 
                 <button className="submit" type="submit" onClick={(e) => sendData(e)}>
                     CALCOLA
