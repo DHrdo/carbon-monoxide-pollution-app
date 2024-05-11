@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { APICallState } from './../../Client_API';
-import { APICallData } from './../../Client_API';
+import { fetchDataByState } from './../../Client_API';
+import { fetchDataByCoordinates } from './../../Client_API';
 import { StateForm } from "./StateForm/StateForm";
 import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
@@ -20,14 +20,16 @@ export const Form = () => {
     const [fetchIsLoading, setIsFetchLoading] = useState(false);
 
 
-    //* SEND DATA FUNCTION
-    const sendData = (e) => {
+    //* SEND DATA
+    const sendData = async (e) => {
         e.preventDefault();
         setIsFetchLoading(true);
 
-        formUserChoice === 'state_form' ?
-            APICallState(selectionState, beginDate, endDate, setIsFetchLoading) :
-            APICallData(longitude, latitude, beginDate, endDate, setIsFetchLoading);
+        if (formUserChoice === 'state_form') {
+            const fetchWithState = await fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading);
+        } else {
+            const fetchWithCoordinates = await fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading);
+        };
 
         setSendBtnClicked(true);
     };
