@@ -1,0 +1,95 @@
+.info-box-overlay {
+  margin-left: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  padding: 10px;
+  outline: 1px solid #9DCD5A;
+  color: #9DCD5A;
+  font-size: 0.9em;
+  border-radius: 50px;
+  opacity: 0.5;
+  position: relative;
+}
+
+.info-box-overlay:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.info-box {
+  border-radius: 10px;
+  opacity: 1;
+  position: absolute;
+  top: -100px;
+  left: -300px;
+  background-color: #9DCD5A;
+  width: 320px;
+  height: 100px;
+  z-index: 999;
+}
+.info-box .info-box-description {
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 1.1em;
+}
+
+.show-info-box:hover {
+  cursor: pointer;
+}
+
+.results {
+  color: white;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background-color: #13262F;
+}
+.results .results-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.results .results-content .results-main-title {
+  font-size: 1.5em;
+  margin-top: 15px;
+}
+.results .results-content .location {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 20px 0;
+}
+.results .results-content .wrap-dates-content {
+  padding: 10px 0;
+  text-align: center;
+}
+.results .results-content .wrap-dates-content h3 {
+  font-size: 1em;
+  font-weight: bolder;
+  text-align: center;
+}
+.results .results-content .wrap-dates-content p {
+  margin: 10px 0;
+  text-align: center;
+}
+.results .results-content .detections {
+  text-align: center;
+  font-size: 1.2em;
+}
+.results .results-content .wrap-co2-data-content h3 {
+  margin: 10px 0;
+  font-size: 1em;
+  text-align: center;
+}
+.results .results-content .wrap-co2-data-content p {
+  margin: 10px 0;
+  text-align: center;
+}

@@ -1,39 +1,28 @@
 import React, { useState } from "react";
-import { fetchDataByState } from './../../Client_API';
-import { fetchDataByCoordinates } from './../../Client_API';
 import { StateForm } from "./StateForm/StateForm";
 import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
 
-export const Form = () => {
+export const Form = ({
+        formUserChoice,
+        setFormUserChoice,
+        selectionState, 
+        setSelectionState, 
+        beginDate, 
+        setBeginDate, 
+        endDate, 
+        setEndDate,
+        longitude,
+        setLongitude,
+        latitude,
+        setLatitude,
+        sendBtnClicked,
+        sendData,
+        fetchIsLoading,
 
-    //* STATES
-    const [formUserChoice, setFormUserChoice] = useState('state_form'); //* state_form or specific_place_form
-
-    const [selectionState, setSelectionState] = useState('');
-    const [longitude, setLongitude] = useState('');
-    const [latitude, setLatitude] = useState('');
-    const [beginDate, setBeginDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [sendBtnClicked, setSendBtnClicked] = useState(false);
-
-    const [fetchIsLoading, setIsFetchLoading] = useState(false);
-
-
-    //* SEND DATA
-    const sendData = async (e) => {
-        e.preventDefault();
-        setIsFetchLoading(true);
-
-        if (formUserChoice === 'state_form') {
-            const fetchWithState = await fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading);
-        } else {
-            const fetchWithCoordinates = await fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading);
-        };
-
-        setSendBtnClicked(true);
-    };
-
+        setStateName,
+        stateName,
+    }) => {
 
     const getUserChoice = (choice) => {
         setFormUserChoice(choice);
@@ -67,12 +56,22 @@ export const Form = () => {
                         sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
                         fetchIsLoading={fetchIsLoading}
+
+                        setStateName={setStateName}
+                        stateName={stateName}
                     /> :
                     <SpecificPlaceForm
+                        selectionState={selectionState}
+                        setSelectionState={setSelectionState}
                         setLongitude={setLongitude}
+                        longitude={longitude}
                         setLatitude={setLatitude}
+                        latitude={latitude}
+                        beginDate={beginDate}
                         setBeginDate={setBeginDate}
+                        endDate={endDate}
                         setEndDate={setEndDate}
+                        sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
                         fetchIsLoading={fetchIsLoading}
                     />

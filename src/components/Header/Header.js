@@ -7,7 +7,7 @@ export const Header = () => {
             <div className="wrap-header">
                 <h1 className="header-text">
                     I L
-                    <Link to={"/"}>
+                    <Link to="/">
                         <div className="wrap-header-logo">
                             <img className="header-logo rotate-center" src={process.env.PUBLIC_URL + "/images/world-icon.png"} />
                         </div>

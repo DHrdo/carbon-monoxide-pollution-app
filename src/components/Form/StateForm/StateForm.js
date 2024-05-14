@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import statesList from './../../../states.json'
 import { Loader } from "../../Loader/Loader";
+import { Link } from "react-router-dom";
 
 export const StateForm = (
     {
@@ -12,18 +13,24 @@ export const StateForm = (
         setEndDate,
         sendBtnClicked,
         sendData,
-        fetchIsLoading
+        fetchIsLoading,
+
+        stateName,
+        setStateName
     }) => {
 
-        console.log('fetchIsLoading', fetchIsLoading);
+        console.log('stateName', stateName)
 
     const mapStatesNames =
         [
             <option key="default" value="">Seleziona uno stato</option>,
             ...statesList.map(state =>
-                <option
-                    key={state.Code}
-                    value={state.Code}> {`${state.Code} - ${state.Name}`}
+                <option 
+                    key={state.Code} 
+                    value={state.Code} 
+                    name={state.Name}
+                > 
+                    {`${state.Code} - ${state.Name}`}
                 </option>)
         ];
     //---------------------------------------------------------------------------------------------------------------
@@ -38,7 +45,14 @@ export const StateForm = (
                     className={(sendBtnClicked && !selectionState) ? 'error' : ''}
                     name="selected_state"
                     id="selected_state"
-                    onChange={(e) => setSelectionState(e.target.value)}>
+                    onChange={(e) => {
+                        setSelectionState(e.target.value);
+
+                        // Aggiorna lo stato del nome dello stato selezionato
+                        const selectedOption = e.target.options[e.target.selectedIndex];
+                        setStateName(`${e.target.value} - ${selectedOption.getAttribute("name")}`);
+                    }}
+                >
                     {mapStatesNames}
                 </select>
 
@@ -64,18 +78,20 @@ export const StateForm = (
 
                 {fetchIsLoading ? <Loader /> : undefined}
 
-                <button
-                    className="submit"
-                    type="submit"
-                    onClick={(e) => sendData(e)}
-                >
-                    CALCOLA
-                    <img
-                        className="btn-icon"
-                        src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg"
-                        alt="submit"
-                    />
-                </button>
+                <Link to="/results">
+                    <button
+                        className="submit"
+                        type="submit"
+                        onClick={(e) => sendData(e)}
+                    >
+                        CALCOLA
+                        <img
+                            className="btn-icon"
+                            src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg"
+                            alt="submit"
+                        />
+                    </button>
+                </Link>
             </div>
         </div>
     );
