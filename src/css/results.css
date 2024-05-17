@@ -24,9 +24,9 @@
   opacity: 1;
   position: absolute;
   top: -100px;
-  left: -300px;
+  left: -235px;
   background-color: #9DCD5A;
-  width: 320px;
+  width: 200px;
   height: 100px;
   z-index: 999;
 }
@@ -51,21 +51,22 @@
   font-family: "Montserrat", sans-serif;
   background-color: #13262F;
 }
+.results .results-main-title {
+  font-size: 1.5em;
+  padding-top: 20px;
+  text-align: center;
+}
+.results .location {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 20px 0;
+}
 .results .results-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-}
-.results .results-content .results-main-title {
-  font-size: 1.5em;
-  margin-top: 15px;
-}
-.results .results-content .location {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 1.2em;
-  padding: 20px 0;
 }
 .results .results-content .wrap-dates-content {
   padding: 10px 0;
@@ -84,6 +85,9 @@
   text-align: center;
   font-size: 1.2em;
 }
+.results .results-content .wrap-co2-data-content {
+  padding: 20px 0;
+}
 .results .results-content .wrap-co2-data-content h3 {
   margin: 10px 0;
   font-size: 1em;
@@ -95,35 +99,23 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .results {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+  .results .results-main-title {
+    font-size: 2em;
+    padding-top: 20px;
+    text-align: center;
+  }
+  .results .location {
+    font-size: 1.5em;
+    margin-top: 30px;
+    text-align: center;
   }
   .results .results-content {
-    flex-direction: row;
-    align-items: flex-start;
-    width: 80%;
-  }
-  .results .results-content .results-main-title {
-    font-size: 2em;
-    margin-top: 30px;
-  }
-  .results .results-content .location,
-  .results .results-content .wrap-dates-content,
-  .results .results-content .detections,
-  .results .results-content .wrap-co2-data-content {
-    text-align: left;
-    margin-top: 0;
-  }
-  .results .results-content .location {
-    font-size: 1.5em;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: normal;
   }
   .results .results-content .wrap-dates-content {
-    width: 50%;
-    padding: 20px;
+    grid-column: 1;
   }
   .results .results-content .wrap-dates-content h3 {
     font-size: 1.2em;
@@ -133,12 +125,10 @@
   }
   .results .results-content .detections {
     font-size: 1.5em;
-    width: 50%;
     padding: 20px;
   }
   .results .results-content .wrap-co2-data-content {
-    width: 50%;
-    padding: 20px;
+    grid-column: 2;
   }
   .results .results-content .wrap-co2-data-content h3 {
     font-size: 1.2em;

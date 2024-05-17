@@ -1,5 +1,8 @@
 .spinner {
-  margin: 20px auto;
+  padding-top: 200px;
+}
+.spinner .spinner-container {
+  margin: 0 auto 20px auto;
   width: 56px;
   height: 56px;
   border-radius: 50%;

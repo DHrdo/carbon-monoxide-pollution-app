@@ -25,9 +25,9 @@
     opacity: 1;
     position: absolute;
     top: -100px;
-    left: -300px;
+    left: -235px;
     background-color: #9DCD5A;
-    width: 320px;
+    width: 200px;
     height: 100px;
     z-index: 999;
 
@@ -54,6 +54,19 @@
     font-family: 'Montserrat', sans-serif;
     background-color: #13262F;
 
+    .results-main-title {
+        font-size: 1.5em;
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .location {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 1.2em;
+        padding: 20px 0;
+    }
+
     .results-content {
         display: flex;
         flex-direction: column;
@@ -61,19 +74,10 @@
 
         padding: 10px;
 
-        .results-main-title {
-            font-size: 1.5em;
-            margin-top: 15px;
-        }
 
-        .location {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 1.2em;
-            padding: 20px 0;
-        }
 
         .wrap-dates-content {
+
             padding: 10px 0;
             text-align: center;
 
@@ -95,6 +99,8 @@
         }
 
         .wrap-co2-data-content {
+            padding: 20px 0;
+
             h3 {
                 margin: 10px 0;
                 font-size: 1em;
@@ -111,37 +117,25 @@
 
 @media only screen and (min-width: 1024px) {
     .results {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
+        .results-main-title {
+            font-size: 2em;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .location {
+            font-size: 1.5em;
+            margin-top: 30px;
+            text-align: center;
+        }
 
         .results-content {
-            flex-direction: row;
-            align-items: flex-start;
-            width: 80%;
-
-            .results-main-title {
-                font-size: 2em;
-                margin-top: 30px;
-            }
-
-            .location,
-            .wrap-dates-content,
-            .detections,
-            .wrap-co2-data-content {
-                text-align: left;
-                margin-top: 0;
-            }
-
-            .location {
-                font-size: 1.5em;
-                padding: 20px;
-            }
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: normal;
 
             .wrap-dates-content {
-                width: 50%;
-                padding: 20px;
+                grid-column: 1;
 
                 h3 {
                     font-size: 1.2em;
@@ -154,13 +148,11 @@
 
             .detections {
                 font-size: 1.5em;
-                width: 50%;
                 padding: 20px;
             }
 
             .wrap-co2-data-content {
-                width: 50%;
-                padding: 20px;
+                grid-column: 2;
 
                 h3 {
                     font-size: 1.2em;

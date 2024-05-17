@@ -22,7 +22,7 @@
                 width: 23px;
                 height: 23px;
                 border-radius: 50px;
-                outline: 1px solid red;
+                background-color: #120a8f;
                 position: relative;
                 
                 
@@ -30,6 +30,7 @@
                     padding: 1px;
                     width: 100%;
                     position: absolute;
+                    filter: invert(100%);
                 }
 
                 .rotate-center {
