@@ -61,7 +61,7 @@ export const Results = (
             {fetchIsLoading ? <Loader /> : (
                 formUserChoice === 'state_form' ?
                     <h2 className='location green-color'>{stateName}</h2> :
-                    <h2 className='location green-color'>Lat/Lon: [{latitude} / {longitude}]</h2>
+                    <h2 className='location green-color'>Latitudine / Longitudine: {latitude} / {longitude}</h2>
             )}
 
             {dataCollection && (dataCollection.data || dataCollection.data_resume) && (
