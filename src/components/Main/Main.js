@@ -4,6 +4,7 @@ import { Form } from "../Form/Form";
 
 export const Main = (
     {
+        dataCollection,
         formUserChoice,
         setFormUserChoice,
         selectionState, 
@@ -23,10 +24,12 @@ export const Main = (
         stateName,
         setStateName
     } ) => {
+
     return (
         <main className="main">
             <Intro />
             <Form
+                dataCollection={dataCollection}
                 formUserChoice={formUserChoice}
                 setFormUserChoice={setFormUserChoice}
                 selectionState={selectionState}

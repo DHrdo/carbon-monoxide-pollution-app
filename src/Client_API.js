@@ -38,9 +38,10 @@ export const fetchDataByState = (selected_state, beginDate, endDate, setIsFetchL
     const url = `https://api.v2.emissions-api.org/api/v2/carbonmonoxide/statistics.json?country=${selected_state}&begin=${beginDate}&end=${endDate}&limit=100`;
     return fetchData(url, setIsFetchLoading)
         .then(data => {
-            const log = processResponse(data);
-            console.log(log);
             return processResponse(data);
+        })
+        .catch(error => {
+            console.error(error);
         });
 };
 
@@ -48,8 +49,9 @@ export const fetchDataByCoordinates = (longitude, latitude, beginDate, endDate, 
     const url = `https://api.v2.emissions-api.org/api/v2/carbonmonoxide/statistics.json?point=${longitude}&point=${latitude}&begin=${beginDate}&end=${endDate}&limit=100`;
     return fetchData(url, setIsFetchLoading)
         .then(data => {
-            const log = processResponse(data);
-            console.log(log);
             return processResponse(data);
+        })
+        .catch(error => {
+            console.error(error);
         });
 };

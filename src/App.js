@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header'
 import { Main } from './components/Main/Main';
 import { Footer } from './components/Footer/Footer';
 import { Results } from './components/Results/Results';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { fetchDataByState } from './Client_API'
 import { fetchDataByCoordinates } from './Client_API';
+import { NotFound } from './components/NotFound/NotFound';
 
 function App() {
 
@@ -20,26 +21,21 @@ function App() {
   const [sendBtnClicked, setSendBtnClicked] = useState(false);
   const [fetchIsLoading, setIsFetchLoading] = useState(false);
   const [stateName, setStateName] = useState('');
-
   const [dataCollection, setDataCollection] = useState([]);
-
-
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseDownInfoBtn = (event) => {
+  //* Handle mouse hover info box 
+  const handleMouseDownInfoBtn = () => {
       setIsHovered(true);
-      console.log('mouse down')
   };
-
   const handleMouseLeaveInfoBtn = () => {
     setIsHovered(false);
-    console.log('hover leave');
   }
-
+  //----------------------------
 
   //* SEND DATA
 
-  const sendData = (e) => {
+  const sendData = () => {
 
       setIsFetchLoading(true);
 
@@ -49,25 +45,29 @@ function App() {
             setDataCollection(data);
             setSendBtnClicked(true);
           })
+          .catch((error) => console.error(error))
       } else {
           fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
           .then(data => {
             setDataCollection(data);
             setSendBtnClicked(true);
           })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            setSendBtnClicked(false)
+          })
         };
 
   };
 
-
-
   return (
     <div className="App">
-      <Header />
+      <Header setDataCollection={setDataCollection}/>
 
       <Routes>
             <Route path="/" element={
               <Main 
+                dataCollection={dataCollection}
                 formUserChoice={formUserChoice}
                 setFormUserChoice={setFormUserChoice}
                 selectionState={selectionState}
@@ -91,6 +91,11 @@ function App() {
 
             <Route path='/results' element={
               <Results 
+                fetchIsLoading={fetchIsLoading}
+                formUserChoice={formUserChoice}
+                longitude={longitude}
+                latitude={latitude}
+
                 dataCollection={dataCollection} 
                 selectionState={selectionState}
                 stateName={stateName}
@@ -100,6 +105,8 @@ function App() {
                 handleMouseLeaveInfoBtn={handleMouseLeaveInfoBtn}
               />} 
             />
+
+            <Route path='/notfound' element={<NotFound />} />
         </Routes>
 
       <Footer />

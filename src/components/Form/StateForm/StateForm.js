@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import statesList from './../../../states.json'
-import { Loader } from "../../Loader/Loader";
 import { Link } from "react-router-dom";
 
 export const StateForm = (
     {
+        dataCollection,
         selectionState,
         setSelectionState,
         beginDate,
@@ -13,13 +13,8 @@ export const StateForm = (
         setEndDate,
         sendBtnClicked,
         sendData,
-        fetchIsLoading,
-
-        stateName,
         setStateName
     }) => {
-
-        console.log('stateName', stateName)
 
     const mapStatesNames =
         [
@@ -76,13 +71,12 @@ export const StateForm = (
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
-                {fetchIsLoading ? <Loader /> : undefined}
-
-                <Link to="/results">
+                
+                <Link to={!dataCollection ? '/notfound' : '/results'}>
                     <button
                         className="submit"
                         type="submit"
-                        onClick={(e) => sendData(e)}
+                        onClick={() => sendData()}
                     >
                         CALCOLA
                         <img

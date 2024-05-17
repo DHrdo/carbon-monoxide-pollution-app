@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { Loader } from '../Loader/Loader';
 
 export const Results = (
     { 
+        fetchIsLoading,
+        formUserChoice,
+        longitude,
+        latitude,
         dataCollection, 
-        selectionState, 
         stateName,
         handleMouseDownInfoBtn,
         handleMouseLeaveInfoBtn,
@@ -44,81 +48,90 @@ export const Results = (
                             <div className='info-box'>
                                 <p className='info-box-description'>Questa è la rilevazione MASSIMA di CO2 presente.</p>
                             </div>
-                        ); 
+                        );
+                    default:
+                        return null;
                 };
             };
         };
 
     return (
         <div className='results'>
-            {dataCollection && (dataCollection.data || dataCollection.data_resume) && (
-                <div className='results-content'>
-                    <h1 className='results-main-title'>Risultati per:</h1>
-                    <h2 className='location'>{stateName}</h2>
-                    <div className='wrap-dates-content'>
+                {fetchIsLoading ? <Loader /> : (
+                
+                    dataCollection && (dataCollection.data || dataCollection.data_resume) && (
+                            <div className='results-content'>
+                                <h1 className='results-main-title'>Risultati per:</h1>
+                                
+                                {formUserChoice === 'state_form' ? 
+                                    <h2 className='location'>{stateName}</h2> :
+                                    <h2 className='location'>Lat/Lon: [{latitude} / {longitude}]</h2>
+                                }
+                                <div className='wrap-dates-content'>
+                                    <h3 className='begin-date-title'>DATA INIZIO RILEVAZIONE 
+                                        <span className='info-box-overlay'
+                                                onMouseEnter={() => setClickedSpan('data-begin')}
+                                                onMouseDown={handleMouseDownInfoBtn}
+                                                onMouseLeave={handleMouseLeaveInfoBtn}
+                                                >i
+                                                {clickedSpan === 'data-begin' && createInfoBox()}
+                                            </span>
+                                    </h3>
 
-                        <h3 className='begin-date-title'>DATA INIZIO RILEVAZIONE 
-                            <span className='info-box-overlay'
-                                    onMouseEnter={() => setClickedSpan('data-begin')}
-                                    onMouseDown={handleMouseDownInfoBtn}
-                                    onMouseLeave={handleMouseLeaveInfoBtn}
-                                    >i
-                                    {clickedSpan === 'data-begin' && createInfoBox()}
-                                </span>
-                        </h3>
+                                    <p className='begin-date'>{dataCollection.data_resume.begin_date}</p>
 
-                        <p className='begin-date'>{dataCollection.data_resume.begin_date}</p>
+                                    <h3 className='end-date-title'>DATA FINE RILEVAZIONE
+                                    <span className='info-box-overlay'
+                                                onMouseEnter={() => setClickedSpan('data-end')}
+                                                onMouseDown={handleMouseDownInfoBtn}
+                                                onMouseLeave={handleMouseLeaveInfoBtn}
+                                                >i
+                                                {clickedSpan === 'data-end' && createInfoBox()}
+                                            </span>
+                                    </h3>
+                                    <p className='end-date'>{dataCollection.data_resume.end_date}</p>
+                                </div>
 
-                        <h3 className='end-date-title'>DATA FINE RILEVAZIONE
-                        <span className='info-box-overlay'
-                                    onMouseEnter={() => setClickedSpan('data-end')}
-                                    onMouseDown={handleMouseDownInfoBtn}
-                                    onMouseLeave={handleMouseLeaveInfoBtn}
-                                    >i
-                                    {clickedSpan === 'data-end' && createInfoBox()}
-                                </span>
-                        </h3>
-                        <p className='end-date'>{dataCollection.data_resume.end_date}</p>
-                    </div>
+                                <h2 className='detections'>DATI CO2</h2>
+                                <div className='wrap-co2-data-content'>
 
-                    <h2 className='detections'></h2>
-                    <div className='wrap-co2-data-content'>
+                                    <h3 className='min-detection-title'>RILEVAZIONE MINIMA 
+                                    <span className='info-box-overlay'
+                                                onMouseEnter={() => setClickedSpan('detection-min')}
+                                                onMouseDown={handleMouseDownInfoBtn}
+                                                onMouseLeave={handleMouseLeaveInfoBtn}
+                                                >i
+                                                {clickedSpan === 'detection-min' && createInfoBox()}
+                                            </span>
+                                    </h3>
+                                    <p className='min-detection'> {dataCollection.data_resume.co2_min}</p>
 
-                        <h3 className='min-detection-title'>RILEVAZIONE MINIMA 
-                        <span className='info-box-overlay'
-                                    onMouseEnter={() => setClickedSpan('detection-min')}
-                                    onMouseDown={handleMouseDownInfoBtn}
-                                    onMouseLeave={handleMouseLeaveInfoBtn}
-                                    >i
-                                    {clickedSpan === 'detection-min' && createInfoBox()}
-                                </span>
-                        </h3>
-                        <p className='min-detection'> {dataCollection.data_resume.co2_min}</p>
+                                    <h3 className='average-detection-title'>RILEVAZIONE MEDIA 
+                                    <span className='info-box-overlay'
+                                        onMouseEnter={() => setClickedSpan('detection-average')}
+                                            onMouseDown={handleMouseDownInfoBtn}
+                                            onMouseLeave={handleMouseLeaveInfoBtn}
+                                            >i
+                                            {clickedSpan === 'detection-average' && createInfoBox()}
+                                        </span>
+                                    </h3>
+                                    <p className='average-detection'>{dataCollection.data_resume.co2_average}</p>
 
-                        <h3 className='average-detection-title'>RILEVAZIONE MEDIA 
-                        <span className='info-box-overlay'
-                            onMouseEnter={() => setClickedSpan('detection-average')}
-                                onMouseDown={handleMouseDownInfoBtn}
-                                onMouseLeave={handleMouseLeaveInfoBtn}
-                                >i
-                                {clickedSpan === 'detection-average' && createInfoBox()}
-                            </span>
-                        </h3>
-                        <p className='average-detection'>{dataCollection.data_resume.co2_average}</p>
-
-                        <h3 className='max-detection-title'>RILEVAZIONE MASSIMA 
-                        <span className='info-box-overlay'
-                                    onMouseEnter={() => setClickedSpan('detection-max')}
-                                    onMouseDown={handleMouseDownInfoBtn}
-                                    onMouseLeave={handleMouseLeaveInfoBtn}
-                                    >i
-                                    {clickedSpan === 'detection-max' && createInfoBox()}
-                                </span>
-                        </h3>
-                        <p className='max-detection'>{dataCollection.data_resume.co2_max}</p>
-                    </div>
-                </div>
-            )}
+                                    <h3 className='max-detection-title'>RILEVAZIONE MASSIMA 
+                                    <span className='info-box-overlay'
+                                                onMouseEnter={() => setClickedSpan('detection-max')}
+                                                onMouseDown={handleMouseDownInfoBtn}
+                                                onMouseLeave={handleMouseLeaveInfoBtn}
+                                                >i
+                                                {clickedSpan === 'detection-max' && createInfoBox()}
+                                            </span>
+                                    </h3>
+                                    <p className='max-detection'>{dataCollection.data_resume.co2_max}</p>
+                                </div>
+                            </div>
+                        )
+                    )
+            }
         </div>
     );
 };

@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Loader } from "../../Loader/Loader";
 
 export const SpecificPlaceForm = (
     {
+        dataCollection,
         longitude,
         setLongitude,
         latitude,
@@ -13,7 +15,7 @@ export const SpecificPlaceForm = (
         setEndDate,
         sendBtnClicked,
         sendData,
-        fetchIsLoading
+        fetchIsLoading,
     }) => {
 
     return (
@@ -64,12 +66,22 @@ export const SpecificPlaceForm = (
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
-                {fetchIsLoading ? <Loader /> : undefined}
+                {fetchIsLoading && <Loader />}
 
-                <button className="submit" type="submit" onClick={(e) => sendData(e)}>
-                    CALCOLA
-                    <img className="btn-icon" src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg" alt="submit" />
-                </button>
+                <Link to={!dataCollection ? '/notfound' : '/results'}>
+                    <button
+                        className="submit"
+                        type="submit"
+                        onClick={(e) => sendData(e)}
+                    >
+                        CALCOLA
+                        <img
+                            className="btn-icon"
+                            src="https://www.htmlcssbuttongenerator.com/iconExample-text-align-left-lined.svg"
+                            alt="submit"
+                        />
+                    </button>
+                </Link>
             </div>
         </div>
     );

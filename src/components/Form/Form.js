@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { StateForm } from "./StateForm/StateForm";
 import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
 
 export const Form = ({
+        dataCollection,
         formUserChoice,
         setFormUserChoice,
         selectionState, 
@@ -47,6 +48,7 @@ export const Form = ({
             {
                 formUserChoice === 'state_form' ?
                     <StateForm
+                        dataCollection={dataCollection}
                         selectionState={selectionState}
                         setSelectionState={setSelectionState}
                         beginDate={beginDate}
@@ -61,6 +63,7 @@ export const Form = ({
                         stateName={stateName}
                     /> :
                     <SpecificPlaceForm
+                        dataCollection={dataCollection}
                         selectionState={selectionState}
                         setSelectionState={setSelectionState}
                         setLongitude={setLongitude}
