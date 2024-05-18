@@ -17,7 +17,7 @@
     <a href="https://github.com/DHrdo/carbon-monoxide-pollution-app"><strong>Esplora la documentazione »</strong></a>
     <br />
     <br />
-    <a href="carbon-monoxide-pollution-app.vercel.app">Guarda demo</a>
+    <a href="https://carbon-monoxide-pollution-app.vercel.app">Guarda demo</a>
     ·
     <a href="https://github.com/DHrdo/carbon-monoxide-pollution-app/issues">Segnala un bug</a>
     ·
