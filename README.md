@@ -47,9 +47,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Il Progetto
 
-[![Product Name Screen Shot][product-screenshot]](newyorktimes-clone-s2i.vercel.app)
+[![Product Name Screen Shot][product-screenshot]](carbon-monoxide-pollution-app.vercel.app)
 
 Questo è il progetto finale del corso di Start2Impact University - Front End.
 Il progetto richiedeva la creazione di una web app per il calcolo della CO2 in base allo stato o alla longitudine/latitudine e la relativa data di ricerca.
@@ -69,7 +69,7 @@ Il progetto richiedeva la creazione di una web app per il calcolo della CO2 in b
 
 
 <!-- USAGE EXAMPLES -->
-## Uso
+## Utilizzo
 E' possibile calcolare la CO2 in un determinato luogo.
 
 <p align="right">(<a href="#readme-top">torna su</a>)</p>
@@ -99,7 +99,7 @@ Link progetto: [https://github.com/DHrdo/carbon-monoxide-pollution-app](https://
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/denis-accardo-806907135
-[product-screenshot]: /public/images/logo-readme.png
+[product-screenshot]: /public/images/webapp.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
