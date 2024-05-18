@@ -50,7 +50,6 @@
 
 .results {
     color: white;
-    max-width: 1000px;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
     background-color: #13262F;
@@ -82,6 +81,12 @@
             padding: 10px 0;
             text-align: center;
 
+            .detections {
+                margin-bottom: 20px;
+                text-align: center;
+                font-size: 1.2em;
+            }
+
             h3 {
                 font-size: 1em;
                 font-weight: bolder;
@@ -92,15 +97,18 @@
                 margin: 10px 0;
                 text-align: center;
             }
+
         }
 
-        .detections {
-            text-align: center;
-            font-size: 1.2em;
-        }
 
         .wrap-co2-data-content {
             padding: 20px 0;
+
+            .detections {
+                margin-bottom: 20px;
+                text-align: center;
+                font-size: 1.2em;
+            }
 
             h3 {
                 margin: 10px 0;
