@@ -13,7 +13,7 @@
     <img src="/public/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">NEW YORK TIMES CLONE FOR START2IMPACT</h3>
+  <h3 align="center">ILoveEarth - Calcola CO2</h3>
 
   <p align="center">
     <br />
@@ -24,7 +24,7 @@
     ·
     <a href="https://github.com/DHrdo/carbon-monoxide-pollution-app/issues">Segnala un bug</a>
     ·
-    <a href="https://github.com/DHrdo/carbon-monoxide-pollution-app/issues">Richiede una feature</a>
+    <a href="https://github.com/DHrdo/carbon-monoxide-pollution-app/issues">Richiedi una feature</a>
   </p>
 </div>
 
@@ -58,7 +58,7 @@ Il progetto richiedeva la creazione di una web app per il calcolo della CO2 in b
 
 
 
-### Built With
+### Realizzato con
 
 * [![HTML][html.com]][Html-url]
 * [![CSS][css.com]][css-url]
@@ -69,14 +69,14 @@ Il progetto richiedeva la creazione di una web app per il calcolo della CO2 in b
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Uso
 E' possibile calcolare la CO2 in un determinato luogo.
 
 <p align="right">(<a href="#readme-top">torna su</a>)</p>
 
 
 <!-- CONTACT -->
-## Contact
+## Contatti
 
 Denis Accardo
 
