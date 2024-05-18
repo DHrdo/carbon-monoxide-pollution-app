@@ -9,9 +9,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="">
-    <img src="/public/images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">ILoveEarth - Calcola CO2</h3>
 
