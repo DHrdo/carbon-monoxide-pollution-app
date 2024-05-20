@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Loader } from '../Loader/Loader';
-import { NotFound } from './../NotFound/NotFound';
 import { Navigate } from 'react-router-dom';
 
 export const Results = (
@@ -66,9 +65,9 @@ export const Results = (
                     <h2 className='location green-color'>Latitudine / Longitudine: <br /> {latitude} / {longitude}</h2>
             )}
 
-            {(!dataCollection || dataCollection.length == 0) && !fetchIsLoading && <Navigate to='/notfound' />}
+            {(!dataCollection || dataCollection.length === 0) && !fetchIsLoading && <Navigate to='/notfound' />}
 
-            {(dataCollection && dataCollection.length != 0) && (
+            {(dataCollection && dataCollection.length !== 0) && (
                 <div className='results-content'>
 
                     <div className='wrap-dates-content'>

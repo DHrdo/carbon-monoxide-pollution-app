@@ -34,9 +34,13 @@
   color: red;
   font-weight: bolder;
 }
-.state-form .state-form-content .submit {
-  margin: 20px auto;
+.state-form .state-form-content a {
   width: 150px;
+  align-self: center;
+}
+.state-form .state-form-content a .submit {
+  margin: 20px auto;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 13px;
@@ -52,12 +56,12 @@
   justify-content: center;
   cursor: pointer;
 }
-.state-form .state-form-content .submit .btn-icon {
+.state-form .state-form-content a .submit .btn-icon {
   width: 25px;
   margin: 0 3px;
   flex-direction: row;
 }
-.state-form .state-form-content .submit:hover {
+.state-form .state-form-content a .submit:hover {
   transition: 626ms;
   width: 165px;
   background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);

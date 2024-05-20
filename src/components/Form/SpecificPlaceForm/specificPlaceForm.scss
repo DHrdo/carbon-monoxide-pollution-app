@@ -37,40 +37,44 @@
             width: 70%;
         }
 
-
-        .submit {
-            margin: 20px auto;
+        a {
             width: 150px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 13px;
-            color: #000000;
-            background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
-            border: solid #9dcd5a 2px;
-            box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
-            border-radius: 10px;
-            transition: 620ms;
+            align-self: center;
 
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
+            .submit {
+                margin: 20px auto;
+                width: 150px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                font-size: 13px;
+                color: #000000;
+                background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
+                border: solid #9dcd5a 2px;
+                box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+                border-radius: 10px;
+                transition: 620ms;
 
-            cursor: pointer;
-
-            .btn-icon {
-                width: 25px;
-                margin: 0 3px;
+                display: flex;
                 flex-direction: row;
-            }
-        }
+                align-items: center;
+                justify-content: center;
 
-        .submit:hover {
-            transition: 626ms;
-            width: 165px;
-            background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
-            color: #ffffff;
-            border: solid 2px #8bb354;
+                cursor: pointer;
+
+                .btn-icon {
+                    width: 25px;
+                    margin: 0 3px;
+                    flex-direction: row;
+                }
+            }
+
+            .submit:hover {
+                transition: 626ms;
+                width: 165px;
+                background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
+                color: #ffffff;
+                border: solid 2px #8bb354;
+            }
         }
     }
 }

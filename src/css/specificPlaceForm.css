@@ -29,7 +29,11 @@
   color: #000000;
   width: 70%;
 }
-.specific-place-form .specific-place-form-content .submit {
+.specific-place-form .specific-place-form-content a {
+  width: 150px;
+  align-self: center;
+}
+.specific-place-form .specific-place-form-content a .submit {
   margin: 20px auto;
   width: 150px;
   font-family: "Montserrat", sans-serif;
@@ -47,12 +51,12 @@
   justify-content: center;
   cursor: pointer;
 }
-.specific-place-form .specific-place-form-content .submit .btn-icon {
+.specific-place-form .specific-place-form-content a .submit .btn-icon {
   width: 25px;
   margin: 0 3px;
   flex-direction: row;
 }
-.specific-place-form .specific-place-form-content .submit:hover {
+.specific-place-form .specific-place-form-content a .submit:hover {
   transition: 626ms;
   width: 165px;
   background: linear-gradient(90deg, #9dcd5a 0%, #8cad5e 72%);
