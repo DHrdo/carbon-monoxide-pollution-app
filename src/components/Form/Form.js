@@ -19,7 +19,7 @@ export const Form = ({
         setLatitude,
         sendBtnClicked,
         sendData,
-        fetchIsLoading,
+        isFetchLoading,
 
         setStateName,
         stateName,
@@ -57,7 +57,7 @@ export const Form = ({
                         setEndDate={setEndDate}
                         sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
-                        fetchIsLoading={fetchIsLoading}
+                        isFetchLoading={isFetchLoading}
 
                         setStateName={setStateName}
                         stateName={stateName}
@@ -76,7 +76,7 @@ export const Form = ({
                         setEndDate={setEndDate}
                         sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
-                        fetchIsLoading={fetchIsLoading}
+                        isFetchLoading={isFetchLoading}
                     />
             }
         </div>

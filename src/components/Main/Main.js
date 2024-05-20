@@ -19,7 +19,7 @@ export const Main = (
         setLatitude,
         sendBtnClicked,
         sendData,
-        fetchIsLoading,
+        isFetchLoading,
 
         stateName,
         setStateName
@@ -44,7 +44,7 @@ export const Main = (
                 setLatitude={setLatitude}
                 sendBtnClicked={sendBtnClicked}
                 sendData={sendData}
-                fetchIsLoading={fetchIsLoading}
+                isFetchLoading={isFetchLoading}
 
                 stateName={stateName}
                 setStateName={setStateName}

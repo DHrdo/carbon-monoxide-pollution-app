@@ -15,7 +15,7 @@ export const SpecificPlaceForm = (
         setEndDate,
         sendBtnClicked,
         sendData,
-        fetchIsLoading,
+        isFetchLoading,
     }) => {
 
     return (
@@ -66,7 +66,7 @@ export const SpecificPlaceForm = (
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
-                {fetchIsLoading && <Loader />}
+                {isFetchLoading && <Loader />}
 
                 <Link to={!dataCollection ? '/notfound' : '/results'}>
                     <button

@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 export const Results = (
     {
-        fetchIsLoading,
+        isFetchLoading,
         formUserChoice,
         longitude,
         latitude,
@@ -59,13 +59,13 @@ export const Results = (
     return (
         <div className='results'>
             <h1 className='results-main-title'>Risultati per:</h1>
-            {fetchIsLoading ? <Loader /> : (
+            {isFetchLoading ? <Loader /> : (
                 formUserChoice === 'state_form' ?
                     <h2 className='location green-color'>{stateName}</h2> :
                     <h2 className='location green-color'>Latitudine / Longitudine: <br /> {latitude} / {longitude}</h2>
             )}
 
-            {(!dataCollection || dataCollection.length === 0) && !fetchIsLoading && <Navigate to='/notfound' />}
+            {(!dataCollection || dataCollection.length === 0) && !isFetchLoading && <Navigate to='/notfound' />}
 
             {(dataCollection && dataCollection.length !== 0) && (
                 <div className='results-content'>

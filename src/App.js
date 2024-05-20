@@ -20,7 +20,7 @@ function App() {
   const [beginDate, setBeginDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [sendBtnClicked, setSendBtnClicked] = useState(false);
-  const [fetchIsLoading, setIsFetchLoading] = useState(false);
+  const [isFetchLoading, setIsFetchLoading] = useState(false);
   const [stateName, setStateName] = useState('');
   const [dataCollection, setDataCollection] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -87,7 +87,7 @@ function App() {
             setLatitude={setLatitude}
             sendBtnClicked={sendBtnClicked}
             sendData={sendData}
-            fetchIsLoading={fetchIsLoading}
+            isFetchLoading={isFetchLoading}
 
             stateName={stateName}
             setStateName={setStateName}
@@ -96,7 +96,7 @@ function App() {
 
         <Route path='/results' element={
           <Results
-            fetchIsLoading={fetchIsLoading}
+            isFetchLoading={isFetchLoading}
             formUserChoice={formUserChoice}
             longitude={longitude}
             latitude={latitude}
