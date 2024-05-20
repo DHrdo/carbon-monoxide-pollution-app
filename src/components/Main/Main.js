@@ -7,11 +7,11 @@ export const Main = (
         dataCollection,
         formUserChoice,
         setFormUserChoice,
-        selectionState, 
-        setSelectionState, 
-        beginDate, 
-        setBeginDate, 
-        endDate, 
+        selectionState,
+        setSelectionState,
+        beginDate,
+        setBeginDate,
+        endDate,
         setEndDate,
         longitude,
         setLongitude,
@@ -23,7 +23,7 @@ export const Main = (
 
         stateName,
         setStateName
-    } ) => {
+    }) => {
 
     return (
         <main className="main">

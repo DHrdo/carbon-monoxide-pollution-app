@@ -8,10 +8,11 @@ import { Routes, Route } from 'react-router-dom';
 import { fetchDataByState } from './Client_API'
 import { fetchDataByCoordinates } from './Client_API';
 import { NotFound } from './components/NotFound/NotFound';
+import { Helmet } from 'react-helmet';
 
 function App() {
 
-      //* STATES
+  //* STATES
   const [formUserChoice, setFormUserChoice] = useState('state_form'); //* state_form or specific_place_form
   const [selectionState, setSelectionState] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -26,7 +27,7 @@ function App() {
 
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
-      setIsHovered(true);
+    setIsHovered(true);
   };
   const handleMouseLeaveInfoBtn = () => {
     setIsHovered(false);
@@ -37,77 +38,81 @@ function App() {
 
   const sendData = () => {
 
-      setIsFetchLoading(true);
+    setIsFetchLoading(true);
 
-      if (formUserChoice === 'state_form') {
-          fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
-          .then(data => {
-            setDataCollection(data);
-            setSendBtnClicked(true);
-          })
-          .catch((error) => console.error(error))
-      } else {
-          fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
-          .then(data => {
-            setDataCollection(data);
-            setSendBtnClicked(true);
-          })
-          .catch((error) => console.error(error))
-          .finally(() => {
-            setSendBtnClicked(false)
-          })
-        };
+    if (formUserChoice === 'state_form') {
+      fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
+        .then(data => {
+          setDataCollection(data);
+          setSendBtnClicked(true);
+        })
+        .catch((error) => console.error(error))
+    } else {
+      fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
+        .then(data => {
+          setDataCollection(data);
+          setSendBtnClicked(true);
+        })
+        .catch((error) => console.error(error))
+        .finally(() => {
+          setSendBtnClicked(false)
+        })
+    };
 
   };
 
   return (
     <div className="App">
-      <Header setDataCollection={setDataCollection}/>
+      <Helmet>
+        <title>Carbon Monoxide Pollution</title>
+      </Helmet>
+
+      <Header setDataCollection={setDataCollection} />
 
       <Routes>
-            <Route path="/" element={
-              <Main 
-                dataCollection={dataCollection}
-                formUserChoice={formUserChoice}
-                setFormUserChoice={setFormUserChoice}
-                selectionState={selectionState}
-                setSelectionState={setSelectionState}
-                beginDate={beginDate}
-                setBeginDate={setBeginDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                longitude={longitude}
-                setLongitude={setLongitude}
-                latitude={latitude}
-                setLatitude={setLatitude}
-                sendBtnClicked={sendBtnClicked}
-                sendData={sendData}
-                fetchIsLoading={fetchIsLoading}
+        <Route path="/" element={
+          <Main
+            dataCollection={dataCollection}
+            formUserChoice={formUserChoice}
+            setFormUserChoice={setFormUserChoice}
+            selectionState={selectionState}
+            setSelectionState={setSelectionState}
+            beginDate={beginDate}
+            setBeginDate={setBeginDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+            longitude={longitude}
+            setLongitude={setLongitude}
+            latitude={latitude}
+            setLatitude={setLatitude}
+            sendBtnClicked={sendBtnClicked}
+            sendData={sendData}
+            fetchIsLoading={fetchIsLoading}
 
-                stateName={stateName}
-                setStateName={setStateName}
-              />
-            } />
+            stateName={stateName}
+            setStateName={setStateName}
+          />
+        } />
 
-            <Route path='/results' element={
-              <Results 
-                fetchIsLoading={fetchIsLoading}
-                formUserChoice={formUserChoice}
-                longitude={longitude}
-                latitude={latitude}
+        <Route path='/results' element={
+          <Results
+            fetchIsLoading={fetchIsLoading}
+            formUserChoice={formUserChoice}
+            longitude={longitude}
+            latitude={latitude}
 
-                dataCollection={dataCollection} 
-                selectionState={selectionState}
-                stateName={stateName}
+            dataCollection={dataCollection}
+            selectionState={selectionState}
+            stateName={stateName}
 
-                isHovered={isHovered}
-                handleMouseDownInfoBtn={handleMouseDownInfoBtn}
-                handleMouseLeaveInfoBtn={handleMouseLeaveInfoBtn}
-              />} 
-            />
+            isHovered={isHovered}
+            handleMouseDownInfoBtn={handleMouseDownInfoBtn}
+            handleMouseLeaveInfoBtn={handleMouseLeaveInfoBtn}
+          />}
+        />
 
-            <Route path='/notfound' element={<NotFound />} />
-        </Routes>
+        <Route path='/notfound' element={<NotFound />} />
+      </Routes>
 
       <Footer />
     </div>
