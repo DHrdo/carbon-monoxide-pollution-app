@@ -2,26 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "../../Loader/Loader";
 
-export const SpecificPlaceForm = (
-    {
-        dataCollection,
-        longitude,
-        setLongitude,
-        latitude,
-        setLatitude,
-        beginDate,
-        setBeginDate,
-        endDate,
-        setEndDate,
-        sendBtnClicked,
-        sendData,
-        isFetchLoading,
-    }) => {
+// SpecificPlaceForm component
+export const SpecificPlaceForm = ({
+    // Props
+    dataCollection,
+    longitude,
+    setLongitude,
+    latitude,
+    setLatitude,
+    beginDate,
+    setBeginDate,
+    endDate,
+    setEndDate,
+    sendBtnClicked,
+    sendData,
+    isFetchLoading,
+    isDateValid,
+}) => {
+
+    // Function to handle Link to results based on conditions
+    const handleLinkTo = () => {
+        if (!dataCollection) return '/notfound'; // If no data, go to notfound
+        else if (!isDateValid) return '/'; // If date is not valid, go to homepage
+        else return '/results'; // Otherwise, go to results
+    };
 
     return (
         <div className="specific-place-form">
             <div className="specific-place-form-content">
 
+                {/* Longitude input */}
                 <label htmlFor="longitude">Longitudine: </label>
                 <input
                     className={(sendBtnClicked && !longitude) ? 'error' : ''}
@@ -34,6 +44,7 @@ export const SpecificPlaceForm = (
 
                 <br />
 
+                {/* Latitude input */}
                 <label htmlFor="latitude">Latitudine: </label>
                 <input
                     className={(sendBtnClicked && !latitude) ? 'error' : ''}
@@ -46,6 +57,7 @@ export const SpecificPlaceForm = (
 
                 <br />
 
+                {/* Start date input */}
                 <label htmlFor="from_date">Data Inizio: </label>
                 <input
                     className={(sendBtnClicked && !beginDate) ? 'error' : ''}
@@ -57,6 +69,7 @@ export const SpecificPlaceForm = (
 
                 <br />
 
+                {/* End date input */}
                 <label htmlFor="to_date">Data Fine: </label>
                 <input
                     className={(sendBtnClicked && !endDate) ? 'error' : ''}
@@ -66,13 +79,15 @@ export const SpecificPlaceForm = (
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
+                {/* Loader component */}
                 {isFetchLoading && <Loader />}
 
-                <Link to={!dataCollection ? '/notfound' : '/results'}>
+                {/* Link to results */}
+                <Link to={handleLinkTo()}>
                     <button
                         className="submit"
                         type="submit"
-                        onClick={(e) => sendData(e)}
+                        onClick={() => sendData()}
                     >
                         CALCOLA
                         <img

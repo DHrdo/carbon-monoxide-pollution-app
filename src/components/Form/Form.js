@@ -4,26 +4,31 @@ import { SpecificPlaceForm } from "./SpecificPlaceForm/SpecificPlaceForm";
 
 
 export const Form = ({
-        dataCollection,
-        formUserChoice,
-        setFormUserChoice,
-        selectionState, 
-        setSelectionState, 
-        beginDate, 
-        setBeginDate, 
-        endDate, 
-        setEndDate,
-        longitude,
-        setLongitude,
-        latitude,
-        setLatitude,
-        sendBtnClicked,
-        sendData,
-        isFetchLoading,
+        // props
+    dataCollection,
+    formUserChoice,
+    setFormUserChoice,
+    selectionState,
+    setSelectionState,
+    beginDate,
+    setBeginDate,
+    endDate,
+    setEndDate,
+    longitude,
+    setLongitude,
+    latitude,
+    setLatitude,
+    sendBtnClicked,
+    sendData,
+    isFetchLoading,
 
-        setStateName,
-        stateName,
-    }) => {
+    setStateName,
+    stateName,
+
+    setIsDateValid,
+    isDateValid,
+    checkUserDateInput,
+}) => {
 
     const getUserChoice = (choice) => {
         setFormUserChoice(choice);
@@ -61,6 +66,10 @@ export const Form = ({
 
                         setStateName={setStateName}
                         stateName={stateName}
+
+                        setIsDateValid={setIsDateValid}
+                        isDateValid={isDateValid}
+                        checkUserDateInput={checkUserDateInput}
                     /> :
                     <SpecificPlaceForm
                         dataCollection={dataCollection}
@@ -77,6 +86,10 @@ export const Form = ({
                         sendBtnClicked={sendBtnClicked}
                         sendData={sendData}
                         isFetchLoading={isFetchLoading}
+
+                        setIsDateValid={setIsDateValid}
+                        isDateValid={isDateValid}
+                        checkUserDateInput={checkUserDateInput}
                     />
             }
         </div>

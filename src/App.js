@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header'
 import { Main } from './components/Main/Main';
@@ -24,6 +24,9 @@ function App() {
   const [stateName, setStateName] = useState('');
   const [dataCollection, setDataCollection] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
+  const [isDateValid, setIsDateValid] = useState(false);
+
+
 
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
@@ -34,31 +37,64 @@ function App() {
   }
   //----------------------------
 
+
+  useEffect(() => {
+    setIsDateValid(true);
+  }, [isDateValid]);
+
+  //* CHECK USER DATE INPUT DIFF.
+  const checkUserDateInput = () => {
+    if (!beginDate || !endDate) {
+      console.log('Inserisci una data di inizio e una data di fine');
+      return;
+    }
+
+    const startDateObj = new Date(beginDate);
+    const endDateObj = new Date(endDate);
+    const diffTime = Math.abs(endDateObj - startDateObj);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (beginDate > endDate) {
+      alert('La data di inizio non può essere successiva alla data di fine');
+      return;
+    } else if (diffDays > 100) {
+      alert('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
+      return;
+    } else if (diffDays < 30) {
+      alert('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve essere inferiore ai 30 giorni');
+      return;
+    }
+
+    setIsDateValid(true);
+  };
+
+
   //* SEND DATA
 
   const sendData = () => {
+    checkUserDateInput();
 
     setIsFetchLoading(true);
-
-    if (formUserChoice === 'state_form') {
-      fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
-        .then(data => {
-          setDataCollection(data);
-          setSendBtnClicked(true);
-        })
-        .catch((error) => console.error(error))
-    } else {
-      fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
-        .then(data => {
-          setDataCollection(data);
-          setSendBtnClicked(true);
-        })
-        .catch((error) => console.error(error))
-        .finally(() => {
-          setSendBtnClicked(false)
-        })
-    };
-
+    if (isDateValid) {
+      if (formUserChoice === 'state_form') {
+        fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
+          .then(data => {
+            setDataCollection(data);
+            setSendBtnClicked(true);
+          })
+          .catch((error) => console.error(error))
+      } else {
+        fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
+          .then(data => {
+            setDataCollection(data);
+            setSendBtnClicked(true);
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            setSendBtnClicked(false)
+          })
+      };
+    }
   };
 
   return (
@@ -67,7 +103,10 @@ function App() {
         <title>Carbon Monoxide Pollution</title>
       </Helmet>
 
-      <Header setDataCollection={setDataCollection} />
+      <Header
+        setDataCollection={setDataCollection}
+        setIsDateValid={setIsDateValid}
+      />
 
       <Routes>
         <Route path="/" element={
@@ -91,6 +130,10 @@ function App() {
 
             stateName={stateName}
             setStateName={setStateName}
+
+            setIsDateValid={setIsDateValid}
+            isDateValid={isDateValid}
+            checkUserDateInput={checkUserDateInput}
           />
         } />
 

@@ -4,6 +4,7 @@ import { Form } from "../Form/Form";
 
 export const Main = (
     {
+        // props
         dataCollection,
         formUserChoice,
         setFormUserChoice,
@@ -22,7 +23,11 @@ export const Main = (
         isFetchLoading,
 
         stateName,
-        setStateName
+        setStateName,
+
+        setIsDateValid,
+        isDateValid,
+        checkUserDateInput,
     }) => {
 
     return (
@@ -48,6 +53,11 @@ export const Main = (
 
                 stateName={stateName}
                 setStateName={setStateName}
+
+                setIsDateValid={setIsDateValid}
+                isDateValid={isDateValid}
+
+                checkUserDateInput={checkUserDateInput}
             />
         </main>
     );
