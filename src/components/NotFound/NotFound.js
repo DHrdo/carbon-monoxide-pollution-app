@@ -7,7 +7,7 @@ export const NotFound = () => {
             <h2 className="not-found-subtitle">Pagina Non Trovata</h2>
             <p className="not-found-description">
                 Siamo spiacenti, ma la pagina che stai cercando non esiste. <br />
-                Prova a selezionare un'altra data.
+                Prova a selezionare dati diversi.
             </p>
         </div>
     );

@@ -56,6 +56,8 @@ export const SpecificPlaceForm = ({
                 />
 
                 <br />
+                <p className="date-limitation">Seleziona un minimo 30 giorni a un massimo 100 giorni</p>
+                <br />
 
                 {/* Start date input */}
                 <label htmlFor="from_date">Data Inizio: </label>

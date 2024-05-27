@@ -64,6 +64,8 @@ export const StateForm = ({
                 </select>
 
                 <br />
+                <p className="date-limitation">Seleziona un minimo 30 giorni a un massimo 100 giorni</p>
+                <br />
 
                 {/* Start date input */}
                 <label htmlFor="begin_date">Data Inizio: </label>
