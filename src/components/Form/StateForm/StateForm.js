@@ -37,8 +37,9 @@ export const StateForm = ({
     // Function to handle Link to results based on conditions
     const handleLinkTo = () => {
         if (!dataCollection) return '/notfound'; // If no data, go to notfound
-        else if (!isDateValid) return '/'; // If date is not valid, go to homepage
-        else return '/results'; // Otherwise, go to results
+        if (!isDateValid) return '/'; // If date is not valid, go to homepage
+
+        return '/results'; // Otherwise, go to results
     };
 
     return (
@@ -90,7 +91,7 @@ export const StateForm = ({
                 />
 
                 {/* Loader component */}
-                {isFetchLoading && <Loader />}
+                {(isFetchLoading && isDateValid) && <Loader />}
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>

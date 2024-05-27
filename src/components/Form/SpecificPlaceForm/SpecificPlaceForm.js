@@ -80,7 +80,7 @@ export const SpecificPlaceForm = ({
                 />
 
                 {/* Loader component */}
-                {isFetchLoading && <Loader />}
+                {(isFetchLoading && isDateValid) && <Loader />}
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>

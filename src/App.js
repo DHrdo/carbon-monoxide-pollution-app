@@ -27,7 +27,6 @@ function App() {
   const [isDateValid, setIsDateValid] = useState(false);
 
 
-
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
     setIsHovered(true);
@@ -37,10 +36,6 @@ function App() {
   }
   //----------------------------
 
-
-  useEffect(() => {
-    setIsDateValid(true);
-  }, [isDateValid]);
 
   //* CHECK USER DATE INPUT DIFF.
   const checkUserDateInput = () => {
@@ -55,18 +50,28 @@ function App() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (beginDate > endDate) {
-      alert('La data di inizio non può essere successiva alla data di fine');
+      console.log('La data di inizio non può essere successiva alla data di fine');
+      setIsDateValid(false);
       return;
-    } else if (diffDays > 100) {
-      alert('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
+    }
+    if (diffDays > 100) {
+      console.log('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
+      setIsDateValid(false);
       return;
-    } else if (diffDays < 30) {
-      alert('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve essere inferiore ai 30 giorni');
+    }
+    if (diffDays < 30) {
+      console.log('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve essere inferiore ai 30 giorni');
+      setIsDateValid(false);
       return;
     }
 
+    console.log(isDateValid);
     setIsDateValid(true);
   };
+
+  useEffect(() => {
+    checkUserDateInput();
+  }, [beginDate, endDate]);
 
 
   //* SEND DATA
@@ -96,6 +101,7 @@ function App() {
       };
     }
   };
+
 
   return (
     <div className="App">
