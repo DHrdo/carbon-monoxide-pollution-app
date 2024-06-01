@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Loader } from '../Loader/Loader';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Results = (
     {
@@ -56,6 +56,12 @@ export const Results = (
         };
     };
 
+    const navigate = useNavigate();
+    const goToPageNotFound = () => {
+        console.log('notfound')
+        return navigate('/notfound');
+    }
+
     return (
         <div className='results'>
             <h1 className='results-main-title'>Risultati per:</h1>
@@ -65,7 +71,7 @@ export const Results = (
                     <h2 className='location green-color'>Latitudine / Longitudine: <br /> {latitude} / {longitude}</h2>
             )}
 
-            {(!dataCollection || dataCollection.length === 0) && !isFetchLoading && <Navigate to='/notfound' />}
+            {(!dataCollection || dataCollection.length === 0) && !isFetchLoading && goToPageNotFound()}
 
             {(dataCollection && dataCollection.length !== 0) && (
                 <div className='results-content'>

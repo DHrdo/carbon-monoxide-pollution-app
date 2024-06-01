@@ -18,7 +18,6 @@ export const StateForm = ({
     sendData,
     setStateName,
     isDateValid,
-    isFetchLoading,
 }) => {
 
     // Map state names for dropdown options
@@ -49,6 +48,7 @@ export const StateForm = ({
                 {/* State selection dropdown */}
                 <label htmlFor="selected_state">Stato: </label>
                 <select
+                    required
                     className={(sendBtnClicked && !selectionState) && 'error'}
                     name="selected_state"
                     id="selected_state"
@@ -70,10 +70,13 @@ export const StateForm = ({
                 {/* Start date input */}
                 <label htmlFor="begin_date">Data Inizio: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !beginDate) && 'error'}
                     type="date"
                     id="begin_date"
                     name="begin_date"
+                    min="2019-01-01"
+                    max="2024-11-23"
                     onChange={(e) => {
                         setBeginDate(e.target.value);
                     }}
@@ -83,17 +86,19 @@ export const StateForm = ({
                 {/* End date input */}
                 <label htmlFor="end_date">Data Fine: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !endDate) && 'error'}
                     type="date"
                     id="end_date"
                     name="end_date"
+                    max="2023-11-23"
                     onChange={(e) => {
                         setEndDate(e.target.value);
                     }}
                 />
 
                 {/* Loader component */}
-                {(isFetchLoading && isDateValid) && <Loader />}
+                {sendBtnClicked && <Loader />}
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>

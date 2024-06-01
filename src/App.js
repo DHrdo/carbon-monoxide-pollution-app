@@ -26,6 +26,22 @@ function App() {
   const [isHovered, setIsHovered] = useState(false);
   const [isDateValid, setIsDateValid] = useState(false);
 
+  console.log('------------------------------------------------------------')
+  console.log('------------------------------------------------------------')
+  console.log('Initial formUserChoice:', formUserChoice);
+  console.log('Initial selectionState:', selectionState);
+  console.log('Initial longitude:', longitude);
+  console.log('Initial latitude:', latitude);
+  console.log('Initial beginDate:', beginDate);
+  console.log('Initial endDate:', endDate);
+  console.log('Initial sendBtnClicked:', sendBtnClicked);
+  console.log('Initial isFetchLoading:', isFetchLoading);
+  console.log('Initial stateName:', stateName);
+  console.log('Initial dataCollection:', dataCollection);
+  console.log('Initial isHovered:', isHovered);
+  console.log('Initial isDateValid:', isDateValid);
+  console.log('------------------------------------------------------------')
+  console.log('------------------------------------------------------------')
 
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
@@ -37,8 +53,9 @@ function App() {
   //----------------------------
 
 
+
   //* CHECK USER DATE INPUT DIFF.
-  const checkUserDateInput = () => {
+  const checkUserDateInput = (event) => {
     if (!beginDate || !endDate) {
       console.log('Inserisci una data di inizio e una data di fine');
       return;
@@ -50,9 +67,8 @@ function App() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (beginDate > endDate) {
-      console.log('La data di inizio non può essere successiva alla data di fine');
       setIsDateValid(false);
-      return;
+      console.log('La data di inizio non può essere successiva alla data di fine')
     }
     if (diffDays > 100) {
       console.log('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
@@ -78,27 +94,42 @@ function App() {
 
   const sendData = () => {
     checkUserDateInput();
-
+    setSendBtnClicked(true);
+  
     setIsFetchLoading(true);
     if (isDateValid) {
-      if (formUserChoice === 'state_form') {
-        fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
-          .then(data => {
-            setDataCollection(data);
-            setSendBtnClicked(true);
-          })
-          .catch((error) => console.error(error))
-      } else {
-        fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
-          .then(data => {
-            setDataCollection(data);
-            setSendBtnClicked(true);
-          })
-          .catch((error) => console.error(error))
-          .finally(() => {
-            setSendBtnClicked(false)
-          })
-      };
+      switch (formUserChoice) {
+
+        case 'state_form':
+          fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
+            .then(data => {
+              setDataCollection(data);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => {
+              setSendBtnClicked(false);
+              setIsDateValid(false);
+              setIsDateValid(false);
+              setIsHovered(false);
+            });
+          break;
+
+        case 'coordinates_form':
+          fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
+            .then(data => {
+              setDataCollection(data);
+            })
+            .catch((error) => console.error(error))
+            .finally(() => {
+              setSendBtnClicked(false);
+              setIsDateValid(false);
+              setIsDateValid(false);
+              setIsHovered(false);
+            });
+          break;
+        default:
+          setIsFetchLoading(false);
+      }
     }
   };
 

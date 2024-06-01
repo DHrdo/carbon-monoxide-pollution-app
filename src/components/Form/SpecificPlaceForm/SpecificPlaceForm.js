@@ -34,6 +34,7 @@ export const SpecificPlaceForm = ({
                 {/* Longitude input */}
                 <label htmlFor="longitude">Longitudine: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !longitude) ? 'error' : ''}
                     type="text"
                     id="longitude"
@@ -47,6 +48,7 @@ export const SpecificPlaceForm = ({
                 {/* Latitude input */}
                 <label htmlFor="latitude">Latitudine: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !latitude) ? 'error' : ''}
                     type="text"
                     id="latitude"
@@ -62,10 +64,13 @@ export const SpecificPlaceForm = ({
                 {/* Start date input */}
                 <label htmlFor="from_date">Data Inizio: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !beginDate) ? 'error' : ''}
                     type="date"
                     id="from_date"
                     name="from_date"
+                    min="2019-01-01"
+                    max="2023-11-23"
                     onChange={(e) => setBeginDate(e.target.value)}
                 />
 
@@ -74,15 +79,18 @@ export const SpecificPlaceForm = ({
                 {/* End date input */}
                 <label htmlFor="to_date">Data Fine: </label>
                 <input
+                    required
                     className={(sendBtnClicked && !endDate) ? 'error' : ''}
                     type="date"
                     id="to_date"
                     name="to_date"
+                    min="2019-01-01"
+                    max="2023-11-23"
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
                 {/* Loader component */}
-                {(isFetchLoading && isDateValid) && <Loader />}
+                {sendBtnClicked && <Loader />}
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>
