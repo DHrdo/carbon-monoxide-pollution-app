@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Header } from './components/Header/Header'
+import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { Footer } from './components/Footer/Footer';
 import { Results } from './components/Results/Results';
 import { Routes, Route } from 'react-router-dom';
-import { fetchDataByState } from './Client_API'
-import { fetchDataByCoordinates } from './Client_API';
+import { fetchDataByState, fetchDataByCoordinates } from './Client_API';
 import { NotFound } from './components/NotFound/NotFound';
 import { Helmet } from 'react-helmet';
 
@@ -25,23 +24,7 @@ function App() {
   const [dataCollection, setDataCollection] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [isDateValid, setIsDateValid] = useState(false);
-
-  console.log('------------------------------------------------------------')
-  console.log('------------------------------------------------------------')
-  console.log('Initial formUserChoice:', formUserChoice);
-  console.log('Initial selectionState:', selectionState);
-  console.log('Initial longitude:', longitude);
-  console.log('Initial latitude:', latitude);
-  console.log('Initial beginDate:', beginDate);
-  console.log('Initial endDate:', endDate);
-  console.log('Initial sendBtnClicked:', sendBtnClicked);
-  console.log('Initial isFetchLoading:', isFetchLoading);
-  console.log('Initial stateName:', stateName);
-  console.log('Initial dataCollection:', dataCollection);
-  console.log('Initial isHovered:', isHovered);
-  console.log('Initial isDateValid:', isDateValid);
-  console.log('------------------------------------------------------------')
-  console.log('------------------------------------------------------------')
+  const [dateError, setDateError] = useState('');
 
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
@@ -49,15 +32,13 @@ function App() {
   };
   const handleMouseLeaveInfoBtn = () => {
     setIsHovered(false);
-  }
+  };
   //----------------------------
 
-
-
   //* CHECK USER DATE INPUT DIFF.
-  const checkUserDateInput = (event) => {
+  const checkUserDateInput = () => {
     if (!beginDate || !endDate) {
-      console.log('Inserisci una data di inizio e una data di fine');
+      setDateError('*Inserisci una data di inizio e una data di fine');
       return;
     }
 
@@ -68,71 +49,73 @@ function App() {
 
     if (beginDate > endDate) {
       setIsDateValid(false);
-      console.log('La data di inizio non può essere successiva alla data di fine')
+      setDateError('*La data di inizio non può essere successiva alla data di fine');
+      return;
     }
     if (diffDays > 100) {
-      console.log('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
+      setDateError('*A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve superare 100 giorni');
       setIsDateValid(false);
       return;
     }
     if (diffDays < 30) {
-      console.log('A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve essere inferiore ai 30 giorni');
+      setDateError('*A causa di alcune limitazioni la differenza tra le date di inizio e fine non deve essere inferiore ai 30 giorni');
       setIsDateValid(false);
       return;
     }
 
-    console.log(isDateValid);
     setIsDateValid(true);
+    setDateError('');
   };
 
   useEffect(() => {
     checkUserDateInput();
   }, [beginDate, endDate]);
 
-
   //* SEND DATA
-
-  const sendData = () => {
-    checkUserDateInput();
-    setSendBtnClicked(true);
-  
-    setIsFetchLoading(true);
+  const sendData = (e) => {
     if (isDateValid) {
-      switch (formUserChoice) {
+      setSendBtnClicked(true);
+      setIsFetchLoading(true);
+      console.log('setIsFetchLoading', isFetchLoading)
 
+      switch (formUserChoice) {
         case 'state_form':
           fetchDataByState(selectionState, beginDate, endDate, setIsFetchLoading)
             .then(data => {
-              setDataCollection(data);
+              if (data) {
+                setDataCollection(data);
+              }
             })
             .catch((error) => console.error(error))
             .finally(() => {
               setSendBtnClicked(false);
               setIsDateValid(false);
-              setIsDateValid(false);
               setIsHovered(false);
+              setIsFetchLoading(false); // Disabilita il caricamento
             });
           break;
 
-        case 'coordinates_form':
+        case 'specific_place_form':
           fetchDataByCoordinates(longitude, latitude, beginDate, endDate, setIsFetchLoading)
             .then(data => {
-              setDataCollection(data);
+              if (data) {
+                setDataCollection(data);
+              }
             })
             .catch((error) => console.error(error))
             .finally(() => {
               setSendBtnClicked(false);
               setIsDateValid(false);
-              setIsDateValid(false);
               setIsHovered(false);
+              setIsFetchLoading(false); // Disabilita il caricamento
             });
           break;
+
         default:
           setIsFetchLoading(false);
       }
     }
   };
-
 
   return (
     <div className="App">
@@ -164,34 +147,31 @@ function App() {
             sendBtnClicked={sendBtnClicked}
             sendData={sendData}
             isFetchLoading={isFetchLoading}
-
             stateName={stateName}
             setStateName={setStateName}
-
             setIsDateValid={setIsDateValid}
             isDateValid={isDateValid}
             checkUserDateInput={checkUserDateInput}
+            dateError={dateError}
           />
         } />
 
-        <Route path='/results' element={
+        <Route path="/results" element={
           <Results
             isFetchLoading={isFetchLoading}
             formUserChoice={formUserChoice}
             longitude={longitude}
             latitude={latitude}
-
             dataCollection={dataCollection}
             selectionState={selectionState}
             stateName={stateName}
-
             isHovered={isHovered}
             handleMouseDownInfoBtn={handleMouseDownInfoBtn}
             handleMouseLeaveInfoBtn={handleMouseLeaveInfoBtn}
           />}
         />
 
-        <Route path='/notfound' element={<NotFound />} />
+        <Route path="/notfound" element={<NotFound />} />
       </Routes>
 
       <Footer />

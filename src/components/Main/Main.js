@@ -28,6 +28,7 @@ export const Main = (
         setIsDateValid,
         isDateValid,
         checkUserDateInput,
+        dateError,
     }) => {
 
     return (
@@ -58,6 +59,7 @@ export const Main = (
                 isDateValid={isDateValid}
 
                 checkUserDateInput={checkUserDateInput}
+                dateError={dateError}
             />
         </main>
     );

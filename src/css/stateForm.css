@@ -33,8 +33,15 @@
 .state-form .state-form-content .date-limitation {
   color: red;
   font-weight: bolder;
-  font-size: 13px;
+  font-size: 0.7em;
   text-align: center;
+}
+.state-form .state-form-content .ui-error-container {
+  text-align: center;
+}
+.state-form .state-form-content .ui-error-container .ui-error-description {
+  width: 100%;
+  font-size: 0.7em;
 }
 .state-form .state-form-content .error {
   color: red;

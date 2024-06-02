@@ -16,15 +16,17 @@ export const SpecificPlaceForm = ({
     setEndDate,
     sendBtnClicked,
     sendData,
-    isFetchLoading,
     isDateValid,
+    dateError,
+    isFetchLoading,
 }) => {
-
+    
     // Function to handle Link to results based on conditions
     const handleLinkTo = () => {
         if (!dataCollection) return '/notfound'; // If no data, go to notfound
-        else if (!isDateValid) return '/'; // If date is not valid, go to homepage
-        else return '/results'; // Otherwise, go to results
+        if (!isDateValid) return '/'; // If date is not valid, go to homepage
+
+        return '/results'; // Otherwise, go to results
     };
 
     return (
@@ -58,7 +60,7 @@ export const SpecificPlaceForm = ({
                 />
 
                 <br />
-                <p className="date-limitation">Seleziona un minimo 30 giorni a un massimo 100 giorni</p>
+                <p className="date-limitation">*Seleziona da un minimo 30 giorni a un massimo 100 giorni</p>
                 <br />
 
                 {/* Start date input */}
@@ -79,7 +81,6 @@ export const SpecificPlaceForm = ({
                 {/* End date input */}
                 <label htmlFor="to_date">Data Fine: </label>
                 <input
-                    required
                     className={(sendBtnClicked && !endDate) ? 'error' : ''}
                     type="date"
                     id="to_date"
@@ -89,15 +90,25 @@ export const SpecificPlaceForm = ({
                     onChange={(e) => setEndDate(e.target.value)}
                 />
 
+                {
+                dateError && beginDate && endDate && 
+                    <div className="ui-error-container">
+                        <h3 className="ui-error-description error">{dateError}</h3>
+                    </div>
+                }
+
                 {/* Loader component */}
-                {sendBtnClicked && <Loader />}
+                {sendBtnClicked && isDateValid && <Loader />}
+
+
+
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>
                     <button
                         className="submit"
                         type="submit"
-                        onClick={() => sendData()}
+                        onClick={(e) => sendData()}
                     >
                         CALCOLA
                         <img

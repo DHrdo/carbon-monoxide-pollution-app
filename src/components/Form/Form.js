@@ -28,6 +28,7 @@ export const Form = ({
     setIsDateValid,
     isDateValid,
     checkUserDateInput,
+    dateError,
 }) => {
 
     const getUserChoice = (choice) => {
@@ -70,6 +71,7 @@ export const Form = ({
                         setIsDateValid={setIsDateValid}
                         isDateValid={isDateValid}
                         checkUserDateInput={checkUserDateInput}
+                        dateError={dateError}
                     /> :
                     <SpecificPlaceForm
                         dataCollection={dataCollection}
@@ -90,6 +92,7 @@ export const Form = ({
                         setIsDateValid={setIsDateValid}
                         isDateValid={isDateValid}
                         checkUserDateInput={checkUserDateInput}
+                        dateError={dateError}
                     />
             }
         </div>

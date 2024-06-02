@@ -50,7 +50,7 @@
 
 .results {
     color: white;
-    height: 100vh;
+    height: 100dvh;
     font-family: 'Montserrat', sans-serif;
     background-color: #13262F;
 
@@ -71,10 +71,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        padding: 10px;
-
-
 
         .wrap-dates-content {
 
@@ -103,6 +99,7 @@
 
         .wrap-co2-data-content {
             padding: 20px 0;
+            height: auto;
 
             .detections {
                 margin-bottom: 20px;
@@ -126,6 +123,7 @@
 
 @media only screen and (min-width: 1024px) {
     .results {
+        height: 100dvh;
         .results-main-title {
             font-size: 2em;
             padding-top: 20px;

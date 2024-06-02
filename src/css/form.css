@@ -30,11 +30,13 @@
   margin-bottom: 1px;
 }
 .form .switch-form .switch-form-content .state-form-selected {
-  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   background-color: #9DCD5A;
 }
 .form .switch-form .switch-form-content .specific-place-form-selected {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
   background-color: #9DCD5A;
 }
 .form .switch-form .switch-form-content .left-side {

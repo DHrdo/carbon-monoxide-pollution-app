@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader } from '../Loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import { NotFound } from '../NotFound/NotFound';
 
 export const Results = (
     {
@@ -16,6 +17,8 @@ export const Results = (
     }) => {
 
     const [clickedSpan, setClickedSpan] = useState(null);
+    const navigate = useNavigate();
+
 
     const createInfoBox = () => {
         if (isHovered) {
@@ -52,17 +55,14 @@ export const Results = (
                     );
                 default:
                     return null;
-            };
-        };
+            }
+        }
     };
 
-    const navigate = useNavigate();
-    const goToPageNotFound = () => {
-        console.log('notfound')
-        return navigate('/notfound');
-    }
-
     return (
+
+        !isFetchLoading && (!dataCollection || dataCollection.length === 0) ? 
+        <NotFound /> :
         <div className='results'>
             <h1 className='results-main-title'>Risultati per:</h1>
             {isFetchLoading ? <Loader /> : (
@@ -70,8 +70,6 @@ export const Results = (
                     <h2 className='location green-color'>{stateName}</h2> :
                     <h2 className='location green-color'>Latitudine / Longitudine: <br /> {latitude} / {longitude}</h2>
             )}
-
-            {(!dataCollection || dataCollection.length === 0) && !isFetchLoading && goToPageNotFound()}
 
             {(dataCollection && dataCollection.length !== 0) && (
                 <div className='results-content'>

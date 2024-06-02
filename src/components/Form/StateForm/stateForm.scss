@@ -43,8 +43,17 @@
         .date-limitation {
             color: red;
             font-weight: bolder;
-            font-size: 13px;
+            font-size: 0.7em;
             text-align: center;
+        }
+
+        .ui-error-container {
+            text-align: center;
+
+            .ui-error-description {
+                width: 100%;
+                font-size: 0.7em;
+            }
         }
 
         .error {

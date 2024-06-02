@@ -18,6 +18,7 @@ export const StateForm = ({
     sendData,
     setStateName,
     isDateValid,
+    dateError,
 }) => {
 
     // Map state names for dropdown options
@@ -64,10 +65,11 @@ export const StateForm = ({
                 </select>
 
                 <br />
-                <p className="date-limitation">Seleziona un minimo 30 giorni a un massimo 100 giorni</p>
+                <p className="date-limitation">*Seleziona da un minimo 30 giorni a un massimo 100 giorni</p>
                 <br />
 
                 {/* Start date input */}
+
                 <label htmlFor="begin_date">Data Inizio: </label>
                 <input
                     required
@@ -76,7 +78,7 @@ export const StateForm = ({
                     id="begin_date"
                     name="begin_date"
                     min="2019-01-01"
-                    max="2024-11-23"
+                    max="2023-11-23"
                     onChange={(e) => {
                         setBeginDate(e.target.value);
                     }}
@@ -97,15 +99,23 @@ export const StateForm = ({
                     }}
                 />
 
+                {
+                dateError && beginDate && endDate && 
+                    <div className="ui-error-container">
+                        <h3 className="ui-error-description error">{dateError}</h3>
+                    </div>
+                }
+
+
                 {/* Loader component */}
-                {sendBtnClicked && <Loader />}
+                {sendBtnClicked && isDateValid && <Loader />}
 
                 {/* Link to results */}
                 <Link to={handleLinkTo()}>
                     <button
                         className="submit"
                         type="submit"
-                        onClick={() => sendData()}
+                        onClick={(e) => sendData()}
                     >
                         CALCOLA
                         <img

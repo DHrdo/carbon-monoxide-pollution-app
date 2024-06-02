@@ -32,8 +32,19 @@
 .specific-place-form .specific-place-form-content .date-limitation {
   color: red;
   font-weight: bolder;
-  font-size: 13px;
+  font-size: 0.7em;
   text-align: center;
+}
+.specific-place-form .specific-place-form-content .ui-error-container {
+  text-align: center;
+}
+.specific-place-form .specific-place-form-content .ui-error-container .ui-error-description {
+  width: 100%;
+  font-size: 0.7em;
+}
+.specific-place-form .specific-place-form-content .error {
+  color: red;
+  font-weight: bolder;
 }
 .specific-place-form .specific-place-form-content a {
   width: 150px;
