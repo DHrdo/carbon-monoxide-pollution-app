@@ -39,7 +39,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: black;
-        font-size: 1.1em;
+        font-size: 1em;
 
     }
 }
@@ -122,6 +122,19 @@
 }
 
 @media only screen and (min-width: 1024px) {
+    .info-box {
+        .info-box-description {
+            width: 100%;
+            padding: 10px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-size: 0.8em;
+        }
+    }
+
     .results {
         height: 100dvh;
         .results-main-title {
@@ -185,3 +198,4 @@
         }
     }
 }
+
