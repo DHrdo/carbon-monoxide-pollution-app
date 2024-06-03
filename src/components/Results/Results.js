@@ -21,13 +21,13 @@ export const Results = ({
                 case 'data-begin':
                     return (
                         <div className='info-box'>
-                            <p className='info-box-description'>Questa è la (migliore e possibile) data iniziale delle rilevazioni dei dati</p>
+                            <p className='info-box-description'>Questa è la data iniziale delle rilevazioni dei dati</p>
                         </div>
                     );
                 case 'data-end':
                     return (
                         <div className='info-box'>
-                            <p className='info-box-description'>Questa è la (migliore e possibile) data finale delle rilevazioni dei dati</p>
+                            <p className='info-box-description'>Questa è la data finale delle rilevazioni dei dati</p>
                         </div>
                     );
                 case 'detection-min':
