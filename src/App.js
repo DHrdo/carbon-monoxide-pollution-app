@@ -26,14 +26,25 @@ function App() {
   const [isDateValid, setIsDateValid] = useState(false);
   const [dateError, setDateError] = useState('');
 
-  
+  console.log('---------------------------------------------');
+  console.log('formUserChoice', formUserChoice);
+  console.log('longitude', longitude);
+  console.log('latitude', latitude);
+  console.log('beginDate', beginDate);
+  console.log('endDate', endDate);
+  console.log('isFetchLoading', isFetchLoading);
+  console.log('dataCollection', dataCollection);
+  console.log('isDateValid', isDateValid)
+  console.log('---------------------------------------------');
+
   const location = useLocation();
   useEffect(() => {
     if (location.pathname === '/') {
-      setLongitude('');
-      setLatitude('');
-      setBeginDate('');
-      setEndDate('');
+      longitude ? setLongitude(longitude => {setLongitude(longitude)}) : setLongitude('')
+      latitude ? setLatitude(latitude => {setLatitude(latitude)}) : setLatitude('')
+      beginDate ? setBeginDate(beginDate => {setBeginDate(beginDate)}) : setBeginDate('')
+      endDate ? setEndDate(endDate => {setEndDate(endDate)}) : setEndDate('')
+      setDataCollection([]);
     }
   }, [location]);
 
@@ -103,7 +114,7 @@ function App() {
               setSendBtnClicked(false);
               setIsDateValid(false);
               setIsHovered(false);
-              setIsFetchLoading(false); // Disabilita il caricamento
+              setIsFetchLoading(false);
             });
           break;
 
@@ -119,7 +130,7 @@ function App() {
               setSendBtnClicked(false);
               setIsDateValid(false);
               setIsHovered(false);
-              setIsFetchLoading(false); // Disabilita il caricamento
+              setIsFetchLoading(false);
             });
           break;
 
