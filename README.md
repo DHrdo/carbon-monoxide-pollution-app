@@ -69,6 +69,9 @@ Il progetto richiedeva la creazione di una web app per il calcolo della CO2 in b
 ## Utilizzo
 E' possibile calcolare la CO2 in un determinato luogo.
 
+LIMITAZIONI:
+* Per questioni di velocità della fetch è stata limitata la ricerca da un minimo di 30 giorni a un massimo di 100 giorni.
+
 <p align="right">(<a href="#readme-top">torna su</a>)</p>
 
 
