@@ -70,6 +70,10 @@ export const Form = ({
 
                         setIsDateValid={setIsDateValid}
                         isDateValid={isDateValid}
+
+                        latitude={latitude}
+                        longitude={longitude}
+
                         checkUserDateInput={checkUserDateInput}
                         dateError={dateError}
                     /> :

@@ -14,6 +14,8 @@ export const StateForm = ({
     setBeginDate,
     endDate,
     setEndDate,
+    longitude,
+    latitude,
     sendBtnClicked,
     sendData,
     setStateName,
@@ -115,7 +117,10 @@ export const StateForm = ({
                     <button
                         className="submit"
                         type="submit"
-                        onClick={(e) => sendData()}
+                        onClick={(e) => {
+                            if (isDateValid) sendData();
+                            else return
+                            }}
                     >
                         CALCOLA
                         <img

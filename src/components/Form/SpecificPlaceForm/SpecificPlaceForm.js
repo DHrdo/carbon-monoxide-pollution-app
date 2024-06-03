@@ -18,13 +18,12 @@ export const SpecificPlaceForm = ({
     sendData,
     isDateValid,
     dateError,
-    isFetchLoading,
 }) => {
     
     // Function to handle Link to results based on conditions
     const handleLinkTo = () => {
         if (!dataCollection) return '/notfound'; // If no data, go to notfound
-        if (!isDateValid) return '/'; // If date is not valid, go to homepage
+        if (!isDateValid || !longitude || !latitude) return '/'; // If date is not valid, go to homepage
 
         return '/results'; // Otherwise, go to results
     };
@@ -108,7 +107,10 @@ export const SpecificPlaceForm = ({
                     <button
                         className="submit"
                         type="submit"
-                        onClick={(e) => sendData()}
+                        onClick={(e) => {
+                            if (longitude && latitude) sendData();
+                            else return
+                            }}
                     >
                         CALCOLA
                         <img
