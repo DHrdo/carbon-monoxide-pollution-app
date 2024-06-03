@@ -4,7 +4,7 @@ import { Header } from './components/Header/Header';
 import { Main } from './components/Main/Main';
 import { Footer } from './components/Footer/Footer';
 import { Results } from './components/Results/Results';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { fetchDataByState, fetchDataByCoordinates } from './Client_API';
 import { NotFound } from './components/NotFound/NotFound';
 import { Helmet } from 'react-helmet';
@@ -25,6 +25,19 @@ function App() {
   const [isHovered, setIsHovered] = useState(false);
   const [isDateValid, setIsDateValid] = useState(false);
   const [dateError, setDateError] = useState('');
+
+  
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setLongitude('');
+      setLatitude('');
+      setBeginDate('');
+      setEndDate('');
+    }
+  }, [location]);
+
+
 
   //* Handle mouse hover info box 
   const handleMouseDownInfoBtn = () => {
@@ -73,10 +86,9 @@ function App() {
 
   //* SEND DATA
   const sendData = (e) => {
-    if (isDateValid) {
+
       setSendBtnClicked(true);
       setIsFetchLoading(true);
-      console.log('setIsFetchLoading', isFetchLoading)
 
       switch (formUserChoice) {
         case 'state_form':
@@ -114,7 +126,6 @@ function App() {
         default:
           setIsFetchLoading(false);
       }
-    }
   };
 
   return (
